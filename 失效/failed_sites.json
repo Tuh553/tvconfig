@@ -1,0 +1,903 @@
+[
+  {
+    "key": "ss直播",
+    "name": "🔞ss直播",
+    "type": 3,
+    "api": "./js/drpy2.min.js",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./js/ss直播.js",
+    "_archive_history": [
+      {
+        "reason": "empty_body",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "empty_body",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "empty_body",
+      "kind": "script",
+      "probe_url": "http://api.hclyz.com:81/mf",
+      "http_status": 530,
+      "checked_at": "2026-07-21T12:09:53Z"
+    }
+  },
+  {
+    "key": "推特APP",
+    "name": "✨Aries|推特APP✨",
+    "type": 3,
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "api": "./py/推特APP.py",
+    "order_num": 5,
+    "ext": "",
+    "_archive_history": [
+      {
+        "reason": "URLError Remote end closed connection without response",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError Remote end closed connection without response",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError Remote end closed connection without response",
+      "kind": "script",
+      "probe_url": "https://{",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:09:53Z"
+    }
+  },
+  {
+    "key": "精工厂",
+    "name": "✨Aries|精工厂✨",
+    "type": 3,
+    "playerType": 2,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./json/精工厂.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://l7xv.xnavxx.xyz/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:09:53Z"
+    }
+  },
+  {
+    "key": "玫瑰TV",
+    "name": "✨Aries|玫瑰TV✨",
+    "type": 3,
+    "playerType": 2,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./json/玫瑰TV.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://fbj1.meiguitv1.xyz/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:09:58Z"
+    }
+  },
+  {
+    "key": "旺仔小乔",
+    "name": "✨Aries|旺仔小乔✨",
+    "type": 3,
+    "playerType": 2,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./json/旺仔小乔.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://wfdgh23iu.diyise38.buzz/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:09:58Z"
+    }
+  },
+  {
+    "key": "高端外泄",
+    "name": "✨Aries|高端外泄✨",
+    "type": 3,
+    "playerType": 2,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./json/高端外泄.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://www.gdwx01.top/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:09:59Z"
+    }
+  },
+  {
+    "key": "好色™ Tv",
+    "name": "✨Aries|好色™ Tv.py✨",
+    "type": 3,
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "api": "./py/好色™ Tv.py",
+    "order_num": 5,
+    "ext": "",
+    "_archive_history": [
+      {
+        "reason": "missing_file:api:./py/好色™ Tv.py",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "missing_file:api:./py/好色™ Tv.py",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "missing_file:api:./py/好色™ Tv.py",
+      "kind": "script",
+      "probe_url": null,
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:05Z"
+    }
+  },
+  {
+    "key": "lavAPP.py",
+    "name": "lavAPP.py",
+    "type": 3,
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "api": "./py/lavAPP.py",
+    "order_num": 5,
+    "ext": "",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "script",
+      "probe_url": "https://m3u8",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:09Z"
+    }
+  },
+  {
+    "key": "黑料",
+    "name": "黑料",
+    "type": 3,
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "api": "./py/黑料.py",
+    "order_num": 5,
+    "ext": "",
+    "_archive_history": [
+      {
+        "reason": "gateway_marker:cloudflare",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "gateway_marker:cloudflare",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "gateway_marker:cloudflare",
+      "kind": "script",
+      "probe_url": "https://kb11.adultporna-av1sim111.xyz",
+      "http_status": 200,
+      "checked_at": "2026-07-21T12:10:13Z"
+    }
+  },
+  {
+    "key": "小红薯APP.py",
+    "name": "小红薯APP.py",
+    "type": 3,
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "api": "./py/小红薯APP.py",
+    "order_num": 5,
+    "ext": "",
+    "_archive_history": [
+      {
+        "reason": "URLError Remote end closed connection without response",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError Remote end closed connection without response",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError Remote end closed connection without response",
+      "kind": "script",
+      "probe_url": "https://{",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:14Z"
+    }
+  },
+  {
+    "key": "推特APP.py",
+    "name": "推特APP.py",
+    "type": 3,
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "api": "./py/推特APP.py",
+    "order_num": 5,
+    "ext": "",
+    "_archive_history": [
+      {
+        "reason": "URLError Remote end closed connection without response",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError Remote end closed connection without response",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError Remote end closed connection without response",
+      "kind": "script",
+      "probe_url": "https://{",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:15Z"
+    }
+  },
+  {
+    "key": "py_MrJav",
+    "name": "MRJav",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=MrJav",
+    "searchable": 1,
+    "quickSearch": 0,
+    "filterable": 0,
+    "changeable": 0,
+    "style": {
+      "type": "rect",
+      "ratio": 1.5
+    },
+    "_archive_history": [
+      {
+        "reason": "gateway_marker:cloudflare",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "gateway_marker:cloudflare",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "gateway_marker:cloudflare",
+      "kind": "type4_remote",
+      "probe_url": "https://py.doube.eu.org/spider?site=MrJav",
+      "http_status": 404,
+      "checked_at": "2026-07-21T12:10:15Z"
+    }
+  },
+  {
+    "key": "py_Miss",
+    "name": "MissAV",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=Miss",
+    "searchable": 1,
+    "quickSearch": 0,
+    "filterable": 0,
+    "changeable": 0,
+    "_archive_history": [
+      {
+        "reason": "gateway_marker:cloudflare",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "gateway_marker:cloudflare",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "gateway_marker:cloudflare",
+      "kind": "type4_remote",
+      "probe_url": "https://py.doube.eu.org/spider?site=Miss",
+      "http_status": 404,
+      "checked_at": "2026-07-21T12:10:15Z"
+    }
+  },
+  {
+    "key": "py_AiDou",
+    "name": "AiDou",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=AiDou",
+    "searchable": 1,
+    "quickSearch": 0,
+    "filterable": 0,
+    "changeable": 0,
+    "style": {
+      "type": "rect",
+      "ratio": 1.5
+    },
+    "_archive_history": [
+      {
+        "reason": "gateway_marker:cloudflare",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "gateway_marker:cloudflare",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "gateway_marker:cloudflare",
+      "kind": "type4_remote",
+      "probe_url": "https://py.doube.eu.org/spider?site=AiDou",
+      "http_status": 404,
+      "checked_at": "2026-07-21T12:10:16Z"
+    }
+  },
+  {
+    "key": "BadNews",
+    "name": "BadNews🔞",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=BadNews",
+    "searchable": 1,
+    "quickSearch": 0,
+    "filterable": 0,
+    "changeable": 0,
+    "style": {
+      "type": "rect",
+      "ratio": 1.5
+    },
+    "_archive_history": [
+      {
+        "reason": "gateway_marker:cloudflare",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "gateway_marker:cloudflare",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "gateway_marker:cloudflare",
+      "kind": "type4_remote",
+      "probe_url": "https://py.doube.eu.org/spider?site=BadNews",
+      "http_status": 404,
+      "checked_at": "2026-07-21T12:10:16Z"
+    }
+  },
+  {
+    "key": "松视开通3",
+    "name": "松视3",
+    "type": 1,
+    "api": "https://api.sexnguon.com/api.php/provide/vod/",
+    "searchable": 0,
+    "quickSearch": 0,
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "remote",
+      "probe_url": "https://api.sexnguon.com/api.php/provide/vod/?ac=class",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:18Z"
+    }
+  },
+  {
+    "key": "小姨子",
+    "name": "小姨子",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+      "链接": "href=\"&&\"[替换:detail>>play#.html>>/sid/1/nid/1.html]",
+      "分类url": "https://thchp.top/index.php/vod/type/id/{cateId}/page/{catePg}.html;;z",
+      "分类": "国产视频$1#日制服诱惑$6#中文字幕$2#网曝黑料$7#色国产主播$3#日本无码$8#激情动漫$4#伦理三级$5#国产传媒$13#抖阴视频$14#强奸伦理$15#欧美无码$9#韩国主播$16#少女萝莉$10#SM调教$11#网红头条$12"
+    },
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://thchp.top/index.php/vod/type/id/1/page/1.html",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:19Z"
+    }
+  },
+  {
+    "key": "夜魅",
+    "name": "夜魅",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+      "分类url": "https://ymyh9.cfd/frim/{cateId}/page/{catePg}.html"
+    },
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://ymyh9.cfd/frim/1/page/1.html",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:20Z"
+    }
+  },
+  {
+    "key": "黑炮视频",
+    "name": "黑炮视频",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+      "分类url": "https://heifengjingline.live/index.php/vod/type/id/{cateId}/page/{catePg}.html"
+    },
+    "_archive_history": [
+      {
+        "reason": "http_404_page",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "http_404_page",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "http_404_page",
+      "kind": "csp",
+      "probe_url": "https://heifengjingline.live/index.php/vod/type/id/1/page/1.html",
+      "http_status": 404,
+      "checked_at": "2026-07-21T12:10:28Z"
+    }
+  },
+  {
+    "key": "免费影院",
+    "name": "㊙️免费影院",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./lib/免费影院.json",
+    "_archive_history": [
+      {
+        "reason": "http_502",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "http_502",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "http_502",
+      "kind": "csp",
+      "probe_url": "https://www.hangtong168.com/",
+      "http_status": 502,
+      "checked_at": "2026-07-21T12:10:30Z"
+    }
+  },
+  {
+    "key": "PandaAV",
+    "name": "㊙️PandaAV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./lib/PandaAV.json",
+    "_archive_history": [
+      {
+        "reason": "timeout",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "timeout",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "timeout",
+      "kind": "csp",
+      "probe_url": "https://www.panda9278.sbs/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:37Z"
+    }
+  },
+  {
+    "key": "91速播",
+    "name": "㊙️91速播",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./lib/91速播.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://wwww.cqifei.my/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:37Z"
+    }
+  },
+  {
+    "key": "🈲🔞淫岛专场",
+    "name": "🈲🔞淫岛专场",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+      "请求头": "User-Agent$MOBILE_UA",
+      "编码": "UTF-8",
+      "主页url": "https://epy.sxbd2.yachts/cn/home/web/",
+      "数组": "默认--cat\"&&thumb||首页--最新发布&&thumb",
+      "标题": "默认--title=\"&&\"||首页--title=\"&&\"",
+      "图片": "默认--data-original=\"&&\"||首页--data-src=\"&&\"",
+      "链接": "默认--href=\"&&\"||首页--href=\"&&\"",
+      "简介": "description\" content=\"&&\"",
+      "搜索模式": "1",
+      "搜索url": "https://epy.sxbd2.yachts/s/{wd}/page/{pg}.html",
+      "搜索数组": "image-container&&</header>",
+      "搜索标题": "title=\"&&\"",
+      "搜索图片": "data-src=\"&&\"",
+      "搜索链接": "href=\"&&\"",
+      "分类url": "https://epy.sxbd2.yachts/vodtype/{cateId}-{catePg}.html;;z",
+      "分类二次截取": "hulian\">&&</div>",
+      "分类数组": "<a&&/a>",
+      "分类标题": ">&&<",
+      "分类ID": "/vodtype/&&.html"
+    },
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://epy.sxbd2.yachts/cn/home/web/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:38Z"
+    }
+  },
+  {
+    "key": "色岛",
+    "name": "㊙️色岛",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./json/色岛.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://www.sedao1.cc/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:44Z"
+    }
+  },
+  {
+    "key": "农夫与少妇",
+    "name": "㊙️┃农夫┃少妇",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./lib/农夫与少妇.json",
+    "_archive_history": [
+      {
+        "reason": "gateway_marker:cloudflare",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "gateway_marker:cloudflare",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "gateway_marker:cloudflare",
+      "kind": "csp",
+      "probe_url": "https://nfsfhf9.nfsf-a16.buzz/go/index.php/vod/type/id/6/page/1.html",
+      "http_status": 404,
+      "checked_at": "2026-07-21T12:10:44Z"
+    }
+  },
+  {
+    "key": "午夜y院",
+    "name": "午夜y院",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+      "请求头": "User-Agent$MOBILE_UA",
+      "主页url": "https://www.btgfu1.sbs/?link=www.diyi02.icu",
+      "数组": "item&&</a>",
+      "标题": "title=\"&&\"",
+      "图片": "data-original=\"&&\"",
+      "副标题": "icoplay\">&&</",
+      "链接": "href=\"&&\"[替换:detail>>play#.html>>/sid/1/nid/1.html]",
+      "简介": "description\"content=\"&&\"",
+      "分类url": "https://www.btgfu1.sbs/index.php/vod/type/id/{cateId}/page/{catePg}.html;;z",
+      "分类数组": "<a&&/a>",
+      "分类标题": ">&&<[不包含:独家推荐#精品资源#特色专区]",
+      "分类ID": "index.php/vod/type/id/&&.html"
+    },
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://www.btgfu1.sbs/?link=www.diyi02.icu",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:45Z"
+    }
+  },
+  {
+    "key": "比卡",
+    "name": "比卡",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./lib/比卡.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://pika.bikaq.cc/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:47Z"
+    }
+  },
+  {
+    "key": "一根逼毛",
+    "name": "一根逼毛",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./lib/一根逼毛.json",
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://crvcd61.mom/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:47Z"
+    }
+  },
+  {
+    "key": "肉视频",
+    "name": "肉视频",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "style": {
+      "ratio": 1.43
+    },
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": "./lib/肉视频.json",
+    "_archive_history": [
+      {
+        "reason": "bad_json:./lib/肉视频.json",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "bad_json:./lib/肉视频.json",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "bad_json:./lib/肉视频.json",
+      "kind": "csp",
+      "probe_url": null,
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:49Z"
+    }
+  },
+  {
+    "key": "https://777170.xyz/%e4%b8%ad%e6%96%87%e5%ad%97%e5%b9%95/page/3/",
+    "name": "🔞SOAV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "style": {
+      "type": "rect",
+      "ratio": 1.5
+    },
+    "ext": {
+      "主页url": "https://www.wantav.co/",
+      "搜索url": "https://wantav.com/search/index/keyword/{wd}",
+      "数组": "data-video-uid=&&</div>",
+      "图片": "data-src=\"&&\"",
+      "标题": "alt=\"&&\"",
+      "副标题": "</i>&&</span>",
+      "链接": "href=\"&&\"",
+      "分类url": "https://777080.xyz/category/{cateId}/page/{catePg}/;;z",
+      "分类": "國產精選$國產精選#探花約炮$探花约炮"
+    },
+    "_archive_history": [
+      {
+        "reason": "timeout",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "timeout",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "timeout",
+      "kind": "csp",
+      "probe_url": "https://www.wantav.co/",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:10:53Z"
+    }
+  },
+  {
+    "key": "api.sexnguon.com",
+    "name": "🔞Sexnguon",
+    "type": 1,
+    "api": "http://api.sexnguon.com/api.php/provide/vod/",
+    "searchable": 1,
+    "recordable": 0,
+    "style": {
+      "type": "rect",
+      "ratio": 1.6
+    },
+    "_archive_history": [
+      {
+        "reason": "empty_body",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "empty_body",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "empty_body",
+      "kind": "remote",
+      "probe_url": "http://api.sexnguon.com/api.php/provide/vod/?ac=class",
+      "http_status": 502,
+      "checked_at": "2026-07-21T12:11:07Z"
+    }
+  },
+  {
+    "key": "csp_XBPQ_癢癢",
+    "name": "🔞癢癢",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "filterable": 1,
+    "ext": {
+      "分类url": "https://guochan.yangyangtv13.top/index.php/vod/show/id/{cateId}/page/{catePg}.html",
+      "直接播放": "1",
+      "图片": "data-original=\"&&\"",
+      "分类": "自拍偷拍$58#绿帽淫妻$59#国产视频$51#主播大秀$52#抖阴视频$41#网红头条$37#网曝黑料$36#AI换脸$32#女优明星$53#日本无码$39#中文字幕$40#日本有码$38#葫芦影业$48#蜜桃传媒$49#杏吧传媒$50#天美传媒$44"
+    },
+    "_archive_history": [
+      {
+        "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+        "archived_at": "2026-07-21T12:11:18Z"
+      }
+    ],
+    "_失效注释": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+    "_检测详情": {
+      "status": "fail",
+      "reason": "URLError [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)",
+      "kind": "csp",
+      "probe_url": "https://guochan.yangyangtv13.top/index.php/vod/show/id/58/page/1.html",
+      "http_status": null,
+      "checked_at": "2026-07-21T12:11:12Z"
+    }
+  }
+]

@@ -1,0 +1,1812 @@
+[
+  {
+    "key": "lf_js_search",
+    "name": "豆瓣",
+    "type": 3,
+    "api": "./lib/apiv57uukw.js",
+    "ext": "",
+    "kind": "js"
+  },
+  {
+    "key": "影视清单播放",
+    "name": "影视清单播放",
+    "type": 4,
+    "api": "http://127.0.0.1:1988/lb?lb=9",
+    "ext": "/storage/emulated/0/江湖/json/影视/",
+    "kind": "local_type4"
+  },
+  {
+    "key": "影视文件播放",
+    "name": "影视文件播放",
+    "type": 4,
+    "api": "http://127.0.0.1:1988/lb?lb=8",
+    "ext": "/storage/emulated/0/江湖/wj/影视/",
+    "kind": "local_type4"
+  },
+  {
+    "key": "直播文件播放",
+    "name": "直播文件播放",
+    "type": 4,
+    "api": "http://127.0.0.1:1988/lb?lb=8",
+    "ext": "/storage/emulated/0/江湖/wj/直播/",
+    "kind": "local_type4"
+  },
+  {
+    "key": "本地采集集合",
+    "name": "本地采集集合",
+    "type": 4,
+    "api": "http://127.0.0.1:1988/lb?lb=12",
+    "ext": "0",
+    "kind": "local_type4"
+  },
+  {
+    "key": "文件播放2",
+    "name": "文件播放2",
+    "type": 4,
+    "api": "http://127.0.0.1:1988/lb?lb=13",
+    "ext": "/storage/emulated/0/江湖/wj/其他/",
+    "kind": "local_type4"
+  },
+  {
+    "key": "boyfriend.show.py",
+    "name": "boyfriend.show",
+    "type": 3,
+    "api": "./py/boyfriend.show.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "Chaturbate.py",
+    "name": "Chaturbate",
+    "type": 3,
+    "api": "./py/Chaturbate.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "cam4",
+    "name": "cam4",
+    "type": 3,
+    "api": "./py/cam4.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "py_stripchat",
+    "name": "py_stripchat",
+    "type": 3,
+    "api": "./py/py_stripchat.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "ss直播",
+    "name": "🔞ss直播",
+    "type": 3,
+    "api": "./js/drpy2.min.js",
+    "ext": "./js/ss直播.js",
+    "kind": "js"
+  },
+  {
+    "key": "推特APP",
+    "name": "✨Aries|推特APP✨",
+    "type": 3,
+    "api": "./py/推特APP.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "精工厂",
+    "name": "✨Aries|精工厂✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/精工厂.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "国产麻豆",
+    "name": "✨Aries|国产麻豆✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/国产麻豆.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "文件夹",
+    "name": "✨Aries|文件夹✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/文件夹.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "四区",
+    "name": "✨Aries|四区✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/四区.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "三区",
+    "name": "✨Aries|三区✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/三区.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "一区",
+    "name": "✨Aries|一区✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/一区.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "自排偷拍",
+    "name": "✨Aries|自排偷拍✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/自排偷拍.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "一个纯粹的x站",
+    "name": "✨Aries|一个纯粹的x站✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/一个纯粹的x站.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "lf_js_lf_live",
+    "name": "💋娱乐｜直播",
+    "type": 3,
+    "api": "./lib/lf_live_min.js",
+    "ext": "./live/live.txt",
+    "kind": "js"
+  },
+  {
+    "key": "玫瑰TV",
+    "name": "✨Aries|玫瑰TV✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/玫瑰TV.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "SOAV",
+    "name": "✨Aries|SOAV✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/SOAV.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "51短剧",
+    "name": "✨Aries|51短剧✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/51短剧.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "旺仔小乔",
+    "name": "✨Aries|旺仔小乔✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/旺仔小乔.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "高端外泄",
+    "name": "✨Aries|高端外泄✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/高端外泄.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "初の体验",
+    "name": "✨Aries|初の体验✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/初の体验.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "溏心次元",
+    "name": "✨Aries|溏心次元✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/溏心次元.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "醉奶吧",
+    "name": "✨Aries|醉奶吧✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/醉奶吧.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "麻豆视频",
+    "name": "✨Aries|麻豆视频✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/麻豆视频.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "偷拍自拍",
+    "name": "✨Aries|偷拍自拍✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/偷拍自拍.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "美人吹箫",
+    "name": "✨Aries|美人吹箫✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/美人吹箫.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "55视频",
+    "name": "✨Aries|55视频✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/55视频.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "18XXX",
+    "name": "✨Aries|18XXX✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/18XXX.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "窜天猴",
+    "name": "✨Aries|窜天猴✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/窜天猴.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "GDD视频",
+    "name": "✨Aries|GDD视频✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/GDD视频.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "桃花浪",
+    "name": "✨Aries|桃花浪✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/桃花浪.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "3Q",
+    "name": "✨Aries|3Q✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/3Q.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "好色™ Tv",
+    "name": "✨Aries|好色™ Tv.py✨",
+    "type": 3,
+    "api": "./py/好色™ Tv.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "百灵鸟在线",
+    "name": "✨Aries|百灵鸟在线✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/百灵鸟在线.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "樱樱女子",
+    "name": "✨Aries|樱樱女子✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/樱樱女子.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "激动网",
+    "name": "✨Aries|激动网✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/激动网.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "成鸡思汉",
+    "name": "✨Aries|成鸡思汉✨",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/成鸡思汉.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "直播转点播1",
+    "name": "💃┃佳丽┃直播",
+    "type": 3,
+    "api": "./js/直播转点播.js",
+    "ext": "./tv/直播.txt",
+    "kind": "js"
+  },
+  {
+    "key": "视频采集3",
+    "name": "采集视频3",
+    "type": 1,
+    "api": "https://ikunzyapi.com/api.php/provide/vod",
+    "ext": "",
+    "kind": "remote"
+  },
+  {
+    "key": "IKUN资源",
+    "name": "💥丨爱看2k丨微广",
+    "type": 1,
+    "api": "https://ikunzyapi.com/api.php/provide/vod/from/ikm3u8/",
+    "ext": "",
+    "kind": "remote"
+  },
+  {
+    "key": "麻豆",
+    "name": "👊【撸到出血為止！-麻豆】👊",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_ggjav",
+    "name": "🔞GGJAV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/ggjav.json",
+    "kind": "csp"
+  },
+  {
+    "key": "lavAPP.py",
+    "name": "lavAPP.py",
+    "type": 3,
+    "api": "./py/lavAPP.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "Phb.py",
+    "name": "Phb.py",
+    "type": 3,
+    "api": "./py/Phb.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "DSYS",
+    "name": "DSYS.py",
+    "type": 3,
+    "api": "./py/DSYS.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "51吸瓜动态版.py",
+    "name": "51吸瓜动态版.py",
+    "type": 3,
+    "api": "./py/51吸瓜动态版.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "Phb.py",
+    "name": "Phb.py",
+    "type": 3,
+    "api": "./py/Phb.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "Xvideos.py",
+    "name": "Xvideos.py",
+    "type": 3,
+    "api": "./py/Xvideos.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "Xhamster.py",
+    "name": "Xhamster.py",
+    "type": 3,
+    "api": "./py/Xhamster.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "4Kpy",
+    "name": "数逼毛",
+    "type": 3,
+    "api": "./py/4k.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "黑料",
+    "name": "黑料",
+    "type": 3,
+    "api": "./py/黑料.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "九个区.py",
+    "name": "九个区.py",
+    "type": 3,
+    "api": "./py/九个区.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "香蕉",
+    "name": "香蕉.py",
+    "type": 3,
+    "api": "./py/香蕉.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "小红薯APP.py",
+    "name": "小红薯APP.py",
+    "type": 3,
+    "api": "./py/小红薯APP.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "推特APP.py",
+    "name": "推特APP.py",
+    "type": 3,
+    "api": "./py/推特APP.py",
+    "ext": "",
+    "kind": "py"
+  },
+  {
+    "key": "py_MrJav",
+    "name": "MRJav",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=MrJav",
+    "ext": "",
+    "kind": "remote_type4"
+  },
+  {
+    "key": "py_Miss",
+    "name": "MissAV",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=Miss",
+    "ext": "",
+    "kind": "remote_type4"
+  },
+  {
+    "key": "py_AiDou",
+    "name": "AiDou",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=AiDou",
+    "ext": "",
+    "kind": "remote_type4"
+  },
+  {
+    "key": "18AV",
+    "name": "🔞18AV(翻）",
+    "type": 3,
+    "api": "csp_Eighteen",
+    "ext": "",
+    "kind": "csp"
+  },
+  {
+    "key": "BadNews",
+    "name": "BadNews🔞",
+    "type": 4,
+    "api": "https://py.doube.eu.org/spider?site=BadNews",
+    "ext": "",
+    "kind": "remote_type4"
+  },
+  {
+    "key": "jable",
+    "name": "jable",
+    "type": 3,
+    "api": "csp_Jable",
+    "ext": "",
+    "kind": "csp"
+  },
+  {
+    "key": "91md",
+    "name": "91md",
+    "type": 1,
+    "api": "https://91md.me/api.php/provide/vod/",
+    "ext": "proxy",
+    "kind": "remote"
+  },
+  {
+    "key": "松视开通1",
+    "name": "松视1",
+    "type": 0,
+    "api": "https://www.xrbsp.com/api/xml.php",
+    "ext": "",
+    "kind": "remote"
+  },
+  {
+    "key": "松视开通2",
+    "name": "松视2",
+    "type": 0,
+    "api": "https://www.gdlsp.com/api/xml.php",
+    "ext": "",
+    "kind": "remote"
+  },
+  {
+    "key": "松视开通3",
+    "name": "松视3",
+    "type": 1,
+    "api": "https://api.sexnguon.com/api.php/provide/vod/",
+    "ext": "",
+    "kind": "remote"
+  },
+  {
+    "key": "pornpinoy",
+    "name": "pornpinoy",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "测试9",
+    "name": "测试",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "五马抖音",
+    "name": "🏆五马抖音",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "次元3",
+    "name": "溏心女优二",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "小姨子",
+    "name": "小姨子",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "痴迷视频",
+    "name": "痴迷视频",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "领头羊",
+    "name": "领头羊",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "快递🔞",
+    "name": "快递🔞",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "夜魅",
+    "name": "夜魅",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_bad",
+    "name": "🔞Bad.news(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/bad.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_bad搜索1",
+    "name": "🔞Bad.news搜索AV(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/bad搜索1.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_52av论坛",
+    "name": "🔞52av论坛(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/52av2.json",
+    "kind": "csp"
+  },
+  {
+    "key": "JAVDAYTV",
+    "name": "🔞JAVDAYTV(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/javday.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_18jtv🔞",
+    "name": "🔞18jtv(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/18jtv.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_xnxx",
+    "name": "🔞XNXX(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/xnxx.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_njavtv.com",
+    "name": "🔞Njavtv(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/njavtv.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_njavtv.com",
+    "name": "🔞Njavtv.com(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/爱妻艺.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_missav.app",
+    "name": "🔞MissAV.app",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/missav.app.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_nowavtv",
+    "name": "🔞NOWAVTV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/nowavtv.json",
+    "kind": "csp"
+  },
+  {
+    "key": "爱豆传媒",
+    "name": "🔞爱豆传媒",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_91porn_asia",
+    "name": "🔞91porn_asia",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/91porn_asia.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_jable",
+    "name": "🔞Jable④",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/jable.json",
+    "kind": "csp"
+  },
+  {
+    "key": "JAVDAY",
+    "name": "🔞JAVDAY",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "911爆料网",
+    "name": "911爆料网",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "幸福加油站",
+    "name": "幸福加油站",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "影片库",
+    "name": "🔞影片库🪜",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_Netflav",
+    "name": "㊙️┃Netflav(墙)",
+    "type": 3,
+    "api": "csp_Netflav",
+    "ext": "",
+    "kind": "csp"
+  },
+  {
+    "key": "黑炮视频",
+    "name": "黑炮视频",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "爱 AV",
+    "name": "爱 AV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "色播",
+    "name": "🔞色播直播",
+    "type": 3,
+    "api": "./lib/apiv2134色播.js",
+    "ext": "",
+    "kind": "js"
+  },
+  {
+    "key": "PornLuLu",
+    "name": "㊙️PornLuLu",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/PornLuLu.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": false,
+    "has_cate": true
+  },
+  {
+    "key": "941",
+    "name": "㊙️┃941c",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/941c.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "18",
+    "name": "㊙️18j",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/18j.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "83视频",
+    "name": "㊙️83视频",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/83视频.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "免费影院",
+    "name": "㊙️免费影院",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/免费影院.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "魔法少女",
+    "name": "㊙️魔法少女",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/魔法少女.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "奶妃",
+    "name": "㊙️奶妃",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/奶妃.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "七色谷",
+    "name": "㊙️七色谷",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/七色谷.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": false,
+    "has_cate": true
+  },
+  {
+    "key": "桃花",
+    "name": "㊙️桃花",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/桃花.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "淘精岁月",
+    "name": "㊙️淘精岁月",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/淘精岁月.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "醉奶吧",
+    "name": "㊙️醉奶吧",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/醉奶吧.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "超级精品",
+    "name": "㊙️超级精品",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/超级精品.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "公子别走",
+    "name": "㊙️公子别走",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/公子别走.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "撸铁汉",
+    "name": "㊙️金陵撸铁汉",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/金陵撸铁汉.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "路漫漫",
+    "name": "㊙️路漫漫",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/路漫漫动漫.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "麦田",
+    "name": "㊙️麦田",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/麦田.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": false,
+    "has_cate": true
+  },
+  {
+    "key": "咪咪女孩",
+    "name": "㊙️咪咪女孩",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/咪咪女孩.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "PandaAV",
+    "name": "㊙️PandaAV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/PandaAV.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "91速播",
+    "name": "㊙️91速播",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/91速播.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "69超级影院",
+    "name": "㊙️69超级影院",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/69超级影院.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "🈲🔞淫岛专场",
+    "name": "🈲🔞淫岛专场",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "404",
+    "name": "㊙️404xsvc",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/404xav.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "Aress",
+    "name": "㊙️Aress",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/Aress.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "淫妻录",
+    "name": "㊙️淫妻录",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/淫妻录.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "Aries",
+    "name": "㊙️Aries",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/Aries.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "魔法少女",
+    "name": "魔法少女",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "魔法少女1",
+    "name": "魔法少女1",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "魔法少女2",
+    "name": "魔法少女2",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "花都影视",
+    "name": "花都影视🔞",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "色岛",
+    "name": "㊙️色岛",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./json/色岛.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "游击队",
+    "name": "游击队",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "四虎新网",
+    "name": "㊙️四虎新网",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/四虎新网.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "农夫与少妇",
+    "name": "㊙️┃农夫┃少妇",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/农夫与少妇.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": false,
+    "has_cate": true
+  },
+  {
+    "key": "线上看女优",
+    "name": "㊙️线上看女优",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/线上看女优.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "AV帝国",
+    "name": "㊙️AV帝国",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/AV帝国.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "午夜y院",
+    "name": "午夜y院",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "Free",
+    "name": "㊙️|Free",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/Free.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "jav",
+    "name": "㊙️jav",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/jav.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "JAVSB",
+    "name": "JAVSB",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/JAVSB.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "比卡",
+    "name": "比卡",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/比卡.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "一根逼毛",
+    "name": "一根逼毛",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/一根逼毛.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "NOWAV",
+    "name": "NOWAV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/NOWAV.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "肉视频",
+    "name": "肉视频",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/肉视频.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "ext_err": "Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+    "key": "insta直播",
+    "name": "insta直播",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/insta直播.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": false,
+    "has_cate": true
+  },
+  {
+    "key": "KISSAV",
+    "name": "KISSAV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "./lib/KISSAV.json",
+    "kind": "csp",
+    "ext_exists": true,
+    "has_home": true,
+    "has_cate": true
+  },
+  {
+    "key": "222cou",
+    "name": "222cou",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "榨汁",
+    "name": "榨汁姐",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "花都",
+    "name": "花都影视",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "小黄书",
+    "name": "小黄书",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "辣味视频",
+    "name": "🍁辣味视频🍁",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "Zuise",
+    "name": "㊙️┃ZUISE (墙)",
+    "type": 3,
+    "api": "csp_Zuise",
+    "ext": "null$$$null$$$1",
+    "kind": "csp",
+    "ext_exists": false
+  },
+  {
+    "key": "Xojav",
+    "name": "㊙️┃XOJav(墙)",
+    "type": 3,
+    "api": "csp_Xojav",
+    "ext": "null$$$proxy",
+    "kind": "csp",
+    "ext_exists": false
+  },
+  {
+    "key": "野鸡🐔TV",
+    "name": "野鸡🐔TV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "https://777170.xyz/%e4%b8%ad%e6%96%87%e5%ad%97%e5%b9%95/page/3/",
+    "name": "🔞SOAV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_av6k",
+    "name": "🔞JAV6K",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/av6k.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_javffm",
+    "name": "🔞JAVFFM",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/javffm.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_javtsunami",
+    "name": "🔞javtsunami",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/javtsunami.json",
+    "kind": "csp"
+  },
+  {
+    "key": "色花堂",
+    "name": "🔞色花堂",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/色花堂1.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_苹果av",
+    "name": "🔞苹果av",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/苹果av.json",
+    "kind": "csp"
+  },
+  {
+    "key": "13AV",
+    "name": "🔞13AV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "18j.tv",
+    "name": "🔞18j.tv",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_18av",
+    "name": "🔞18AV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/18av.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_170av",
+    "name": "🔞170av",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/170av.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_300分类",
+    "name": "🔞300分类",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/300分类.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_444咖啡",
+    "name": "🔞444咖啡",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/444咖啡.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_airav",
+    "name": "🔞AirAV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/airav.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_hohoj",
+    "name": "🔞HOHOJ",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/hohoj.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_kanav",
+    "name": "🔞KANAV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/kanav.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_MOTV",
+    "name": "🔞MOTV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/motv.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_owoAV",
+    "name": "🔞OWOAV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/owoav.json",
+    "kind": "csp"
+  },
+  {
+    "key": "ppp",
+    "name": "🔞ppp",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "pronlulu",
+    "name": "🔞pronlulu",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_porn87",
+    "name": "🔞porn87",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/porn87.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_pornhub",
+    "name": "🔞pornhub",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/pornhub.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_pornlulu",
+    "name": "🔞PornLuLu",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/pornlulu.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_qinav",
+    "name": "🔞Qinav",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/qinav.json",
+    "kind": "csp"
+  },
+  {
+    "key": "api.sexnguon.com",
+    "name": "🔞Sexnguon",
+    "type": 1,
+    "api": "http://api.sexnguon.com/api.php/provide/vod/",
+    "ext": "",
+    "kind": "remote"
+  },
+  {
+    "key": "csp_XYQHiker_xHamster",
+    "name": "🔞xHamster",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/xHamster.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_xvideos",
+    "name": "🔞Xvideos",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/xvideos.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_18jav",
+    "name": "🔞18JAV(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/18jav.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_hohoj",
+    "name": "🔞HOHOJ(XYQHiker)",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/hohoj.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XBPQ_伊人",
+    "name": "🔞伊人",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XBPQ_癢癢",
+    "name": "🔞癢癢",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "hav6.beauty",
+    "name": "🔞黄AV",
+    "type": 0,
+    "api": "https://www.pgxdy.com/api/xml.php",
+    "ext": "",
+    "kind": "remote"
+  },
+  {
+    "key": "HiPianZhiBo",
+    "name": "🔞嗨片",
+    "type": 3,
+    "api": "csp_HiPianZhiBo",
+    "ext": "",
+    "kind": "csp"
+  },
+  {
+    "key": "kanav",
+    "name": "🔞看AV",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "<dict>",
+    "kind": "csp"
+  },
+  {
+    "key": "XMVideo",
+    "name": "🔞熊猫视频",
+    "type": 3,
+    "api": "csp_XMVideo",
+    "ext": "",
+    "kind": "csp"
+  },
+  {
+    "key": "女优色库",
+    "name": "🔞女优色库",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/女优.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_日日撸",
+    "name": "🔞日日撸",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/日日撸.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_台湾kiss",
+    "name": "🔞台湾kiss",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/台湾kiss.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_正妹AV",
+    "name": "🔞正妹AV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/正妹av.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_亚色影库",
+    "name": "🔞亚色影库",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/亚色影库.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_朱古力",
+    "name": "🔞朱古力",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/朱古力.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_杏吧视频",
+    "name": "🔞杏吧视频",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/杏吧视频.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_丽丽AV",
+    "name": "🔞丽丽AV",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/丽丽av.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_黄色仓库123",
+    "name": "🔞黄色仓库123✈️🔗",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/黄色仓库123.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_黄色仓库la",
+    "name": "🔞黄色仓库啦✈️🔗",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/黄色仓库啦.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_紫色成人",
+    "name": "🔞紫色成人",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/紫色成人.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_酷爱成人网>",
+    "name": "🔞酷爱成人网✈️",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/酷爱成人网.json",
+    "kind": "csp"
+  },
+  {
+    "key": "csp_XYQHiker_鲨鱼av",
+    "name": "🔞鲨鱼av",
+    "type": 3,
+    "api": "csp_XYQHiker",
+    "ext": "https://ghfast.top/https://raw.githubusercontent.com/xwyjc/lwang/main/XYQHike/鲨鱼av.json",
+    "kind": "csp"
+  }
+]
