@@ -150,60 +150,124 @@ class Spider(Spider):
         return result
 
     def playerContent(self, flag, id, vipFlags):
-        domain = f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency"
-        rsp = self.fetch(domain).text
-        lines = rsp.strip().split('\n')
-        psch = ''
-        pkey = ''
-        url = []
-        for i, line in enumerate(lines):
-            if line.startswith('#EXT-X-MOUFLON:'):
-                parts = line.split(':')
+        """
+        播放链路说明：
+        1. master m3u8 取多码率
+        2. 优先返回 480/720 直链（新版 playlist 常已含可播 URI）
+        3. 同时提供 py 代理地址，兼容旧版 MOUFLON:FILE 加密
+        """
+        master_candidates = [
+            f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency",
+            f"https://edge-hls.doppiocdn.com/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency",
+            f"https://edge-hls.doppiocdn.org/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency",
+        ]
+        master_text = ""
+        for master_url in master_candidates:
+            try:
+                response = self.fetch(master_url)
+                if response.status_code == 200 and "#EXTM3U" in response.text:
+                    master_text = response.text
+                    break
+            except Exception:
+                continue
+        if not master_text:
+            return {
+                "parse": 0,
+                "url": master_candidates[0],
+                "header": self.headers,
+            }
+
+        psch = ""
+        pkey = ""
+        for line in master_text.splitlines():
+            if line.startswith("#EXT-X-MOUFLON:"):
+                parts = line.split(":")
                 if len(parts) >= 4:
-                    psch = parts[2]
-                    pkey = parts[3]
-            if '#EXT-X-STREAM-INF' in line:
-                name_start = line.find('NAME="') + 6
-                name_end = line.find('"', name_start)
-                qn = line[name_start:name_end]
-                # URL在下一行
-                url_base = lines[i + 1]
-                # 组合最终的URL，并加上psch和pkey参数
-                full_url = f"{url_base}&psch={psch}&pkey={pkey}"
-                proxy_url = f"{self.getProxyUrl()}&url={quote(full_url)}"
-                # 将画质和URL添加到列表中
-                url.extend([qn, proxy_url])
-        result = {}
-        result["url"] = url
-        result["parse"] = '0'
-        result["contentType"] = ''
-        result["header"] = self.headers
-        return result
+                    psch, pkey = parts[2], parts[3]
+
+        quality_entries = []
+        lines = master_text.splitlines()
+        for index, line in enumerate(lines):
+            if "#EXT-X-STREAM-INF" not in line or index + 1 >= len(lines):
+                continue
+            name_match = re.search(r'NAME="([^"]+)"', line)
+            quality_name = name_match.group(1) if name_match else f"q{index}"
+            stream_url = lines[index + 1].strip()
+            if not stream_url or stream_url.startswith("#"):
+                continue
+            if "psch=" not in stream_url and psch:
+                separator = "&" if "?" in stream_url else "?"
+                stream_url = f"{stream_url}{separator}psch={psch}&pkey={pkey}"
+            quality_entries.append((quality_name, stream_url))
+
+        if not quality_entries:
+            return {"parse": 0, "url": master_candidates[0], "header": self.headers}
+
+        preferred_order = ["480", "720", "360", "240", "160", "1080"]
+        def quality_rank(name: str) -> int:
+            for rank, token in enumerate(preferred_order):
+                if token in name:
+                    return rank
+            return 50
+
+        quality_entries.sort(key=lambda item: quality_rank(item[0]))
+        # 多画质：名称 + 代理URL（代理内做旧版解密/403降级）
+        url_list = []
+        for quality_name, stream_url in quality_entries:
+            proxy_url = f"{self.getProxyUrl()}&url={quote(stream_url, safe='')}"
+            url_list.extend([quality_name, proxy_url])
+        # 额外塞一个直链兜底（部分壳不走 localProxy 时可用）
+        best_direct = quality_entries[0][1]
+        url_list.extend(["直链", best_direct])
+
+        return {
+            "parse": 0,
+            "url": url_list,
+            "contentType": "",
+            "header": self.headers,
+            "jx": 0,
+        }
 
     def localProxy(self, param):
-        url = unquote(param['url'])
+        url = unquote(param.get("url") or "")
+        if not url:
+            return [404, "text/plain", "missing url"]
         data = self.fetch(url)
-        # 403 时降级到模糊低清单（上游逻辑）
+        # 403 时降级模糊低清
         if data.status_code == 403:
-            data = self.fetch(re.sub(r'\d+p\d*\.m3u8', '160p_blurred.m3u8', url))
+            degraded = re.sub(r"\d+p\d*\.m3u8", "160p_blurred.m3u8", url)
+            data = self.fetch(degraded)
         if data.status_code != 200:
-            return [404, "text/plain", ""]
-        data = data.text
-        if "#EXT-X-MOUFLON:FILE" in data:
-            data = self.process_m3u8_content_v2(data)
-        return [200, "application/vnd.apple.mpegur", data]
+            return [404, "text/plain", f"upstream {data.status_code}"]
+        body = data.text
+        if "#EXT-X-MOUFLON:FILE" in body:
+            body = self.process_m3u8_content_v2(body)
+        # 新版 playlist 可能已是明文 URI，原样返回即可
+        return [200, "application/vnd.apple.mpegurl", body]
 
     def process_m3u8_content_v2(self, m3u8_content):
-        lines = m3u8_content.strip().split('\n')
-        for i, line in enumerate(lines):
-            if (line.startswith('#EXT-X-MOUFLON:FILE:') and 'media.mp4' in lines[i + 1]):
-                encrypted_data = line.split(':', 2)[2].strip()
+        lines = m3u8_content.strip().split("\n")
+        for index, line in enumerate(lines):
+            if not line.startswith("#EXT-X-MOUFLON:FILE:"):
+                continue
+            if index + 1 >= len(lines):
+                continue
+            encrypted_data = line.split(":", 2)[2].strip()
+            decrypted_data = None
+            for candidate_key in [self.stripchat_key, "Zokee2OhPh9kugh4", "Quean4cai9boJa5a"]:
                 try:
-                    decrypted_data = self.decrypt(encrypted_data, self.stripchat_key)
-                except Exception as e:
-                    decrypted_data = self.decrypt(encrypted_data, "Zokee2OhPh9kugh4")
-                lines[i + 1] = lines[i + 1].replace('media.mp4', decrypted_data)
-        return '\n'.join(lines)
+                    decrypted_data = self.decrypt(encrypted_data, candidate_key)
+                    break
+                except Exception:
+                    continue
+            if not decrypted_data:
+                continue
+            if "media.mp4" in lines[index + 1]:
+                lines[index + 1] = lines[index + 1].replace("media.mp4", decrypted_data)
+            else:
+                # 兼容非 media.mp4 占位
+                lines[index + 1] = decrypted_data
+        return "\n".join(lines)
 
     def country_code_to_flag(self, country_code):
         if len(country_code) != 2 or not country_code.isalpha():

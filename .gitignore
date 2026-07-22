@@ -1,10 +1,6 @@
-node_modules/
 __pycache__/
 *.pyc
-.git/
-.cursor/
-_github_upload/
-$null)
-*.log
 .DS_Store
-Thumbs.db
+tools/
+失效/
+*.backup.json

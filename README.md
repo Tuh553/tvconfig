@@ -1,22 +1,29 @@
-# tvconfig（精简 8 源）
+# tvconfig（江湖 8 源 · 纯 Python）
 
-只保留用户指定源，其余已删除。
+接口：`https://raw.githubusercontent.com/Tuh553/tvconfig/main/江湖.json`
 
-| 源 | 实现 | 状态 |
-|----|------|------|
-| 花都影视 | csp_XBPQ → hdys.pro | 列表可用 |
-| MissAV | csp_XYQHiker → lib/missav.txt | missav.app 可用 |
-| JAVDAYTV | csp_XBPQ → javday.tv | 列表可用 |
-| NOWAV | csp_XYQHiker → lib/nowav_xyq.json | 站方页面异常时可能空列表 |
-| 小黄书 | csp_XBPQ → xchina | 部分网络 Cloudflare，需代理 |
-| 18JAV | csp_XYQHiker → lib/18jav.txt | 18jav.tv 可用 |
-| 黄色仓库 | csp_XYQHiker → lib/黄色仓库.txt | hsck 可用 |
-| Stripchat | py/py_stripchat.py | API 可用 |
+## 为什么改成 Python？
 
-## 订阅
+`csp_XBPQ` / `csp_XYQHiker` 依赖 spider jar。若客户端 jar 加载失败，会出现**只有 Python 源能开**的情况。
 
-```
-https://raw.githubusercontent.com/Tuh553/tvconfig/main/江湖.json
-```
+当前 8 源全部改为 `./py/*.py`，与 Stripchat 同机制。
 
-依赖：`jar/yt.jar`、`lib/*`、`py/py_stripchat.py`、`base/spider.py`
+## 源列表
+
+| 名称 | 脚本 | 备注 |
+|------|------|------|
+| 花都影视 | py_huadu.py | hdys.pro，直出 m3u8 |
+| MissAV | py_missav.py | missav.app MacCMS |
+| JAVDAYTV | py_javday.py | javday.app |
+| NOWAV | py_nowav.py | pigav.ws PeerTube API |
+| 小黄书 | py_xchina.py | 遇 Cloudflare 需代理 |
+| 18JAV | py_18jav.py | 18jav.tv |
+| 黄色仓库 | py_hsck.py | hsck4.26img.com |
+| Stripchat | py_stripchat.py | 直播；优先 480p + 代理解密兜底 |
+
+## 使用
+
+1. 订阅上述 raw 地址  
+2. **强制刷新**接口（清缓存）  
+3. 客户端需支持 **Python 爬虫**（FongMi / 影视仓等常见壳）  
+4. 播放失败时先试「直链」画质（Stripchat）
