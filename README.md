@@ -1,24 +1,22 @@
-# tvconfig
+# tvconfig（精简 8 源）
 
-TVBox 配置：江湖源（已做存活检测）
+只保留用户指定源，其余已删除。
 
-- 主配置：[`江湖.json`](./江湖.json)
-- 活跃 `sites`：**169**
-- 失效归档（注释字段 `_失效源` / `_失效源_注释`）：**32**
-- 检测报告：[`失效/report.md`](./失效/report.md)
-- 失效列表：[`失效/失效源注释.md`](./失效/失效源注释.md)
-- 检测脚本：[`tools/source_health_check.py`](./tools/source_health_check.py)
+| 源 | 实现 | 状态 |
+|----|------|------|
+| 花都影视 | csp_XBPQ → hdys.pro | 列表可用 |
+| MissAV | csp_XYQHiker → lib/missav.txt | missav.app 可用 |
+| JAVDAYTV | csp_XBPQ → javday.tv | 列表可用 |
+| NOWAV | csp_XYQHiker → lib/nowav_xyq.json | 站方页面异常时可能空列表 |
+| 小黄书 | csp_XBPQ → xchina | 部分网络 Cloudflare，需代理 |
+| 18JAV | csp_XYQHiker → lib/18jav.txt | 18jav.tv 可用 |
+| 黄色仓库 | csp_XYQHiker → lib/黄色仓库.txt | hsck 可用 |
+| Stripchat | py/py_stripchat.py | API 可用 |
 
-## 说明
+## 订阅
 
-1. `sites` 内为当前保留源（pass / soft_fail / manual_review / skip）。
-2. 标准 JSON **不支持** `//` 注释，故失效源放在顶层 `_失效源`、`_失效源_注释`（播放器通常忽略未知字段）。
-3. 恢复某源：将 `_失效源` 中对象移回 `sites` 即可。
-4. 未验证播放链路；存活标准为分类/首页可连通。
-
-## 本地复检
-
-```bash
-python tools/source_health_check.py
-python tools/source_health_check.py --apply
 ```
+https://raw.githubusercontent.com/Tuh553/tvconfig/main/江湖.json
+```
+
+依赖：`jar/yt.jar`、`lib/*`、`py/py_stripchat.py`、`base/spider.py`
