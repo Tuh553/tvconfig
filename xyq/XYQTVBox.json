@@ -312,6 +312,50 @@
       "filterable": 1,
       "quickSearch": 1,
       "searchable": 1
+    },
+    {
+      "key": "cns_厂长",
+      "name": "厂长┃秒播",
+      "type": 3,
+      "api": "csp_NewCzGuard",
+      "jar": "https://tv.菜妮丝.top/jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
+      "timeout": 10,
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "cns_文采",
+      "name": "文采┃秒播",
+      "type": 3,
+      "api": "csp_JpysGuard",
+      "jar": "https://tv.菜妮丝.top/jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
+      "timeout": 10,
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "cns_原创",
+      "name": "原创┃秒播",
+      "type": 3,
+      "api": "csp_YCyzGuard",
+      "jar": "https://tv.菜妮丝.top/jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
+      "timeout": 15,
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "cns_比特",
+      "name": "比特┃秒播",
+      "type": 3,
+      "api": "csp_BttwooGuard",
+      "jar": "https://tv.菜妮丝.top/jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
+      "timeout": 10,
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1
     }
   ],
   "parses": [
@@ -377,6 +421,26 @@
       "ext": {
         "header": {
           "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "-HLS-",
+      "type": 0,
+      "url": "https://jx.hls.one/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "-虾米2-",
+      "type": 0,
+      "url": "https://jx.xmflv.cc/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
         }
       }
     }
