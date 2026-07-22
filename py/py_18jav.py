@@ -1,11 +1,17 @@
 # coding=utf-8
 # !/usr/bin/python
-"""18JAV.tv（纯 Python）"""
+"""18JAV.tv（纯 Python）
+
+翻页说明：
+站点为 KVS，分页走 AJAX：
+  /{path}?mode=async&function=get_block&block_id=list_videos_common_videos_list&sort_by=...&from={page}
+AJAX 片段里的视频链接多为相对路径 /videos/xxx。
+"""
 from __future__ import annotations
 
 import re
 import sys
-from typing import Dict, List
+from typing import Dict, List, Tuple
 from urllib.parse import quote, urljoin
 
 from base.spider import Spider
@@ -14,6 +20,8 @@ sys.path.append("..")
 
 
 class Spider(Spider):
+    BLOCK_ID = "list_videos_common_videos_list"
+
     def init(self, extend: str = ""):
         self.host = "https://18jav.tv"
         self.headers = {
@@ -22,16 +30,20 @@ class Spider(Spider):
                 "(KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
             ),
             "Referer": f"{self.host}/",
+            "X-Requested-With": "XMLHttpRequest",
+            "Accept": "*/*",
         }
-        self.categories = [
-            ("最新", "latest-updates"),
-            ("热门", "hot"),
-            ("中文字幕", "categories/chinese-subtitle"),
-            ("无码", "categories/uncensored"),
-            ("台湾AV", "categories/taiwan-av"),
-            ("角色剧情", "categories/roleplay"),
-            ("制服", "categories/uniform"),
+        # 用 path 作为 type_id；(显示名, path, sort_by)
+        self.categories: List[Tuple[str, str, str]] = [
+            ("最新", "latest-updates", "release_at"),
+            ("热门", "hot", "views"),
+            ("中文字幕", "categories/chinese-subtitle", "release_at"),
+            ("无码", "categories/uncensored", "release_at"),
+            ("台湾AV", "categories/taiwan-av", "release_at"),
+            ("角色剧情", "categories/roleplay", "release_at"),
+            ("制服", "categories/uniform", "release_at"),
         ]
+        self.sort_by_map = {path: sort_by for _, path, sort_by in self.categories}
         return self
 
     def getName(self) -> str:
@@ -48,34 +60,32 @@ class Spider(Spider):
 
     def homeContent(self, filter: bool):
         return {
-            "class": [{"type_name": name, "type_id": type_id} for name, type_id in self.categories],
-            "list": self._parse_list(self._get(f"{self.host}/latest-updates")),
+            "class": [{"type_name": name, "type_id": path} for name, path, _ in self.categories],
+            "list": self._load_page("latest-updates", "release_at", 1)[0],
         }
 
     def homeVideoContent(self):
-        return {"list": self._parse_list(self._get(f"{self.host}/latest-updates"))}
+        videos, _ = self._load_page("latest-updates", "release_at", 1)
+        return {"list": videos}
 
     def categoryContent(self, tid: str, pg: str, filter: bool, extend: dict):
         page_number = max(int(pg or "1"), 1)
-        base = f"{self.host}/{tid.strip('/')}"
-        url = base if page_number <= 1 else f"{base}/{page_number}/"
-        # 兼容 query 类分类
-        if "?" in tid:
-            url = f"{self.host}/{tid}&from={page_number}" if page_number > 1 else f"{self.host}/{tid}"
-        videos = self._parse_list(self._get(url))
+        path = (tid or "latest-updates").strip("/")
+        sort_by = self.sort_by_map.get(path, "release_at")
+        videos, pagecount = self._load_page(path, sort_by, page_number)
         return {
             "list": videos,
             "page": page_number,
-            "pagecount": page_number + (1 if videos else 0),
-            "limit": 24,
-            "total": page_number * 24,
+            "pagecount": max(pagecount, page_number + (1 if videos else 0)),
+            "limit": 12,
+            "total": max(pagecount, page_number) * 12,
         }
 
     def detailContent(self, array: List[str]):
         detail_url = array[0]
         if not detail_url.startswith("http"):
-            detail_url = urljoin(self.host + "/", detail_url)
-        html = self._get(detail_url)
+            detail_url = urljoin(self.host + "/", detail_url.lstrip("/"))
+        html = self._get(detail_url, ajax=False)
         title = self._first(
             [
                 r"<h1[^>]*>(.*?)</h1>",
@@ -119,76 +129,148 @@ class Spider(Spider):
 
     def searchContent(self, key: str, quick: bool, pg: str = "1"):
         page_number = max(int(pg or "1"), 1)
-        url = f"{self.host}/search/{quote(key)}/"
-        if page_number > 1:
-            url = f"{self.host}/search/{quote(key)}/{page_number}/"
-        return {"list": self._parse_list(self._get(url)), "page": page_number}
+        path = f"search/{quote(key)}"
+        if page_number <= 1:
+            html = self._get(f"{self.host}/{path}/", ajax=False)
+            videos = self._parse_list(html)
+            pagecount = self._parse_pagecount(html)
+        else:
+            videos, pagecount = self._load_page(path, "release_at", page_number)
+        return {
+            "list": videos,
+            "page": page_number,
+            "pagecount": pagecount,
+            "limit": 12,
+            "total": pagecount * 12,
+        }
 
     def playerContent(self, flag: str, play_id: str, vipFlags: List[str]):
-        return {"parse": 0, "url": play_id, "header": self.headers}
+        return {
+            "parse": 0,
+            "url": play_id,
+            "header": {
+                "User-Agent": self.headers["User-Agent"],
+                "Referer": f"{self.host}/",
+            },
+        }
 
     def localProxy(self, param: dict):
         return None
 
-    def _get(self, url: str) -> str:
-        response = self.fetch(url, headers=self.headers, timeout=15)
+    def _load_page(self, path: str, sort_by: str, page_number: int) -> Tuple[List[Dict[str, str]], int]:
+        path = path.strip("/")
+        if page_number <= 1:
+            html = self._get(f"{self.host}/{path}", ajax=False)
+        else:
+            # KVS AJAX 分页（与站点 site.js 一致）
+            params = {
+                "mode": "async",
+                "function": "get_block",
+                "block_id": self.BLOCK_ID,
+                "sort_by": sort_by,
+                "from": str(page_number),
+            }
+            html = self._get(f"{self.host}/{path}", ajax=True, params=params)
+            # 个别分类若返回空，再试 from 补零
+            if not self._parse_list(html):
+                params["from"] = f"{page_number:02d}"
+                html = self._get(f"{self.host}/{path}", ajax=True, params=params)
+        videos = self._parse_list(html)
+        pagecount = self._parse_pagecount(html)
+        if pagecount < page_number and videos:
+            pagecount = page_number + 1
+        if pagecount < 1:
+            pagecount = 1
+        return videos, pagecount
+
+    def _get(self, url: str, ajax: bool = False, params: dict | None = None) -> str:
+        headers = dict(self.headers)
+        if not ajax:
+            headers.pop("X-Requested-With", None)
+        response = self.fetch(url, headers=headers, timeout=15, params=params)
         response.encoding = response.apparent_encoding or "utf-8"
         return response.text
 
     def _parse_list(self, html: str) -> List[Dict[str, str]]:
         videos: List[Dict[str, str]] = []
-        hrefs = re.findall(r'href="(https?://18jav\.tv/videos/[^"]+)"', html)
-        if not hrefs:
-            hrefs = [urljoin(self.host + "/", path) for path in re.findall(r'href="(/videos/[^"]+)"', html)]
-        # 去重保序
-        unique_hrefs = []
+        # 同时兼容完整链接与 AJAX 相对链接
+        hrefs = re.findall(r'href="((?:https://18jav\.tv)?/videos/[^"]+)"', html)
+        unique_hrefs: List[str] = []
         seen = set()
         for href in hrefs:
-            if href in seen:
+            full = href if href.startswith("http") else urljoin(self.host + "/", href.lstrip("/"))
+            if full in seen:
                 continue
-            seen.add(href)
-            unique_hrefs.append(href)
-        # 用邻近块取标题图片
-        for href in unique_hrefs:
-            block_match = re.search(
-                rf'href="{re.escape(href)}".{{0,800}}?',
-                html,
-                flags=re.S,
+            seen.add(full)
+            unique_hrefs.append(full)
+
+        # 按卡片解析，避免封面 <a> 把时长当成标题
+        card_pattern = re.compile(
+            r'class="video-img-box[^"]*".*?'
+            r'href="((?:https://18jav\.tv)?/videos/[^"]+)".*?'
+            r'data-src="(https?://[^"]+)".*?'
+            r'class="label"[^>]*>(.*?)</span>.*?'
+            r'class="title"[^>]*>\s*<a[^>]*>(.*?)</a>',
+            flags=re.S | re.I,
+        )
+        for href, pic, remark, title in card_pattern.findall(html):
+            full = href if href.startswith("http") else urljoin(self.host + "/", href.lstrip("/"))
+            title_text = re.sub(r"<[^>]+>", "", title).strip()
+            remark_text = re.sub(r"<[^>]+>", "", remark).strip()
+            if full in seen:
+                # seen 已在上面用于 href 去重，这里用另一集合
+                pass
+            videos.append(
+                {
+                    "vod_id": full,
+                    "vod_name": title_text or full.rstrip("/").split("/")[-1],
+                    "vod_pic": pic,
+                    "vod_remarks": remark_text,
+                }
             )
-            block = block_match.group(0) if block_match else ""
-            # 扩大上下文
-            pos = html.find(href)
-            if pos >= 0:
-                block = html[max(0, pos - 200) : pos + 900]
+        if videos:
+            # 卡片去重
+            unique_videos: List[Dict[str, str]] = []
+            seen_ids = set()
+            for item in videos:
+                if item["vod_id"] in seen_ids:
+                    continue
+                seen_ids.add(item["vod_id"])
+                unique_videos.append(item)
+            return unique_videos
+
+        # fallback：仅有链接时
+        for href in unique_hrefs:
+            code = href.rstrip("/").split("/")[-1]
             title = self._first(
                 [
-                    r'class="title"[^>]*>(.*?)</',
-                    r'title="([^"]+)"',
-                    r'alt="([^"]+)"',
+                    rf'class="title"[^>]*>\s*<a[^>]+href="[^"]*{re.escape(code)}"[^>]*>(.*?)</a>',
+                    rf'<a[^>]+href="[^"]*{re.escape(code)}"[^>]*>([^<]{3,80})</a>',
                 ],
-                block,
-                href.rstrip("/").split("/")[-1],
+                html,
+                code,
             )
-            title = re.sub(r"<[^>]+>", "", title).strip()
-            pic = self._first(
-                [
-                    r'data-src="(https?://[^"]+)"',
-                    r'src="(https?://[^"]+\.(?:jpg|jpeg|png|webp)[^"]*)"',
-                ],
-                block,
-                "",
-            )
-            remark = self._first([r'class="label"[^>]*>(.*?)</'], block, "")
-            remark = re.sub(r"<[^>]+>", "", remark).strip()
+            title = re.sub(r"<[^>]+>", "", title).strip() or code
             videos.append(
                 {
                     "vod_id": href,
                     "vod_name": title,
-                    "vod_pic": pic,
-                    "vod_remarks": remark,
+                    "vod_pic": "",
+                    "vod_remarks": "",
                 }
             )
         return videos
+
+    def _parse_pagecount(self, html: str) -> int:
+        # data-parameters="sort_by:release_at;from:1417"
+        pages = [int(item) for item in re.findall(r"from:(\d+)", html)]
+        if pages:
+            return max(pages)
+        # 普通分页数字
+        nums = [int(item) for item in re.findall(r'class="page-link"[^>]*>\s*(\d+)\s*<', html)]
+        if nums:
+            return max(nums)
+        return 1
 
     @staticmethod
     def _first(patterns: List[str], text: str, default: str = "") -> str:

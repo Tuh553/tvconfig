@@ -151,30 +151,33 @@ class Spider(Spider):
 
     def playerContent(self, flag, id, vipFlags):
         """
-        播放链路说明：
-        1. master m3u8 取多码率
-        2. 优先返回 480/720 直链（新版 playlist 常已含可播 URI）
-        3. 同时提供 py 代理地址，兼容旧版 MOUFLON:FILE 加密
+        播放优化（解决超时）：
+        1. 只请求 1 个 master，超时 5s，不做多 CDN 串行重试
+        2. 默认返回 480p/240p 直链（不走 proxy://，避免壳二次回源超时）
+        3. 仅在直链解析失败时回退 master 直链
         """
-        master_candidates = [
-            f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency",
-            f"https://edge-hls.doppiocdn.com/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency",
-            f"https://edge-hls.doppiocdn.org/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency",
-        ]
+        master_url = f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency"
+        play_headers = {
+            "User-Agent": self.headers.get("User-Agent", ""),
+            "Origin": self.host,
+            "Referer": f"{self.host}/",
+            "Accept": "*/*",
+        }
         master_text = ""
-        for master_url in master_candidates:
-            try:
-                response = self.fetch(master_url)
-                if response.status_code == 200 and "#EXTM3U" in response.text:
-                    master_text = response.text
-                    break
-            except Exception:
-                continue
+        try:
+            response = self.session.get(master_url, headers=self.headers, timeout=5)
+            if response.status_code == 200 and "#EXTM3U" in response.text:
+                master_text = response.text
+        except Exception:
+            master_text = ""
+
         if not master_text:
+            # 快速失败：直接把 master 交给播放器，由播放器自己拉流
             return {
                 "parse": 0,
-                "url": master_candidates[0],
-                "header": self.headers,
+                "url": master_url,
+                "header": play_headers,
+                "jx": 0,
             }
 
         psch = ""
@@ -201,48 +204,54 @@ class Spider(Spider):
             quality_entries.append((quality_name, stream_url))
 
         if not quality_entries:
-            return {"parse": 0, "url": master_candidates[0], "header": self.headers}
+            return {"parse": 0, "url": master_url, "header": play_headers, "jx": 0}
 
-        preferred_order = ["480", "720", "360", "240", "160", "1080"]
+        preferred_order = ["480", "240", "360", "720", "160", "source", "1080"]
+
         def quality_rank(name: str) -> int:
+            lower_name = (name or "").lower()
             for rank, token in enumerate(preferred_order):
-                if token in name:
+                if token in lower_name:
                     return rank
             return 50
 
         quality_entries.sort(key=lambda item: quality_rank(item[0]))
-        # 多画质：名称 + 代理URL（代理内做旧版解密/403降级）
-        url_list = []
-        for quality_name, stream_url in quality_entries:
-            proxy_url = f"{self.getProxyUrl()}&url={quote(stream_url, safe='')}"
-            url_list.extend([quality_name, proxy_url])
-        # 额外塞一个直链兜底（部分壳不走 localProxy 时可用）
-        best_direct = quality_entries[0][1]
-        url_list.extend(["直链", best_direct])
+        best_name, best_url = quality_entries[0]
+
+        # 主返回：单一直链，最快；附加 1~2 个备选直链（不走 py 代理）
+        url_list = [best_name, best_url]
+        for quality_name, stream_url in quality_entries[1:3]:
+            url_list.extend([quality_name, stream_url])
+        url_list.extend(["master", master_url])
 
         return {
             "parse": 0,
             "url": url_list,
             "contentType": "",
-            "header": self.headers,
+            "header": play_headers,
             "jx": 0,
         }
 
     def localProxy(self, param):
+        # 保留兼容：若壳仍走 proxy:// 也能工作，但默认播放已不再依赖它
         url = unquote(param.get("url") or "")
         if not url:
             return [404, "text/plain", "missing url"]
-        data = self.fetch(url)
-        # 403 时降级模糊低清
+        try:
+            data = self.session.get(url, headers=self.headers, timeout=5)
+        except Exception:
+            return [504, "text/plain", "upstream timeout"]
         if data.status_code == 403:
             degraded = re.sub(r"\d+p\d*\.m3u8", "160p_blurred.m3u8", url)
-            data = self.fetch(degraded)
+            try:
+                data = self.session.get(degraded, headers=self.headers, timeout=5)
+            except Exception:
+                return [403, "text/plain", "forbidden"]
         if data.status_code != 200:
-            return [404, "text/plain", f"upstream {data.status_code}"]
+            return [data.status_code, "text/plain", f"upstream {data.status_code}"]
         body = data.text
         if "#EXT-X-MOUFLON:FILE" in body:
             body = self.process_m3u8_content_v2(body)
-        # 新版 playlist 可能已是明文 URI，原样返回即可
         return [200, "application/vnd.apple.mpegurl", body]
 
     def process_m3u8_content_v2(self, m3u8_content):
@@ -307,16 +316,18 @@ class Spider(Spider):
             decrypted_bytes.append(cipher_byte ^ key_byte)
         return decrypted_bytes.decode('utf-8')
 
-    def create_session_with_retry(self, retries=3, backoff_factor=0.3):
+    def create_session_with_retry(self, retries=1, backoff_factor=0.1):
+        # 播放链路要快：少重试，避免 App 侧总超时
         self.session = requests.Session()
         retry_strategy = Retry(
             total=retries,
             backoff_factor=backoff_factor,
-            status_forcelist=[429, 500, 502, 503, 504]  # 需要重试的状态码
+            status_forcelist=[429, 500, 502, 503, 504],
+            raise_on_status=False,
         )
         adapter = HTTPAdapter(max_retries=retry_strategy)
         self.session.mount("http://", adapter)
         self.session.mount("https://", adapter)
 
     def fetch(self, url):
-        return self.session.get(url, headers=self.headers, timeout=10)
+        return self.session.get(url, headers=self.headers, timeout=8)
