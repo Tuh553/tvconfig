@@ -9,35 +9,48 @@
 
 ## 江湖 · 纯 Python 源
 
-`csp_XBPQ` / `csp_XYQHiker` 依赖 spider jar。若客户端 jar 加载失败，会出现**只有 Python 源能开**的情况。
+当前源全部为 `./py/*.py`，客户端需支持 Python 爬虫。
 
-当前源全部改为 `./py/*.py`，与 Stripchat 同机制。
-
-| 名称 | 脚本 | 备注 |
-|------|------|------|
-| 花都影视 | py_huadu.py | hdys.pro |
-| MissAV | py_missav.py | missav.app MacCMS |
-| JAVDAYTV | py_javday.py | javday.app MacCMS |
-| NOWAV | py_nowav.py | pigav.ws PeerTube API |
-| 18JAV | py_18jav.py | 18jav.tv |
-| 黄色仓库 | py_hsck.py | hsck 系列 |
-| Stripchat | py_stripchat.py | 直播；固定 pkey + 多 CDN |
+| 名称 | 脚本 |
+|------|------|
+| 花都影视 | py_huadu.py |
+| MissAV | py_missav.py |
+| JAVDAYTV | py_javday.py |
+| NOWAV | py_nowav.py |
+| 18JAV | py_18jav.py |
+| 黄色仓库 | py_hsck.py |
+| Stripchat | py_stripchat.py |
 
 ## XYQ 配置说明
 
 来源：[xyq254245/xyqonlinerule](https://github.com/xyq254245/xyqonlinerule)
 
-已清洗内容：
+### 已清洗
 
-- 删除磁力站（新6V / 电影天堂 / 七妹 / 美剧天堂 / 80S / 迅雷吧 等）
-- 删除早教 / 戏曲 / 课堂类（哔哩幼儿少儿课堂、兔小贝、戏曲多多、播视童趣等）
-- 保留荐片、正片/动漫/直播等常规源（约 33 站）
+- 磁力站（新6V / 电影天堂 / 七妹 / 美剧天堂 / 80S / 迅雷吧 等）
+- 早教 / 戏曲 / 课堂类
+- 失效解析：`zui`、`夜幕`；重复咸鱼条目
 
-本地目录含 `custom_spider.jar`、`dr_py`、`XYQHiker`、`biliext` 等相对路径资源，**建议整夹使用**。
+### XYQHiker 修复（2026-07）
+
+**已修复：**
+
+| 源 | 处理 |
+|----|------|
+| 樱花动漫 | 换新域名 `yinghuadh.com`，重写 stui 规则 |
+| 风铃动漫 | 修正分类排序模板 + 搜索改为 `bbfun.cc/feng-s/...` |
+| 短剧五五 | 修正搜索分页与片单链接选择器 |
+
+**已删除（站挂/规则无法续命）：**
+
+去看吧、嗷呜、路漫漫、爱看电影、低端影视、番茶动漫
+
+**保留可用：** 动漫巴士、AGE、骚火、看影网、好影快看、农民、虎牙、斗鱼 等
+
+整夹含 `custom_spider.jar` / `dr_py` / `XYQHiker` / `biliext`，相对路径建议本地或同目录部署。
 
 ## 使用
 
-1. 订阅上表 raw 地址（江湖或 XYQ 二选一，或都加）
-2. **强制刷新**接口（清缓存）
-3. 江湖源：客户端需支持 **Python 爬虫**
-4. XYQ 源：客户端需能加载本地/同目录 jar 与相对路径资源
+1. 订阅上表 raw 地址  
+2. 强制刷新接口（清缓存）  
+3. 江湖源需 Python 爬虫支持；XYQ 源需 jar + 相对资源完整  
