@@ -18,6 +18,16 @@ sys.path.append('..')
 
 class Spider(Spider):
 
+    # 与阅读订阅源 st.txt 一致：固定 pkey 才能拿到干净分片（无 media.mp4 混淆）
+    FIXED_PKEYS = ["bXorqTB5ZhP5FcpX", "Iecohquahc5RieQu"]
+    FALLBACK_CDN_HOSTS = [
+        "doppiocdn.com",
+        "doppiocdn.media",
+        "doppiocdn.net",
+        "doppiocdn.org",
+        "doppiocdn.live",
+    ]
+
     def init(self, extend="{}"):
         # 上游版本使用 stripchat 主站；如果你需要保留 stripol，可在这里改回去
         origin = 'https://zh.stripchat.com'
@@ -25,12 +35,28 @@ class Spider(Spider):
         self.headers = {
             'Origin': origin,
             'Referer': f"{origin}/",
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0'
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36'
         }
         self.stripchat_key = self.decode_key_compact()
         # 缓存字典
         self._hash_cache = {}
+        self.cdn_hosts = list(self.FALLBACK_CDN_HOSTS)
+        self.play_pkey = self.FIXED_PKEYS[0]
         self.create_session_with_retry()
+        # 可选：extend 支持 {"proxy":"http://user:pass@host:port"}
+        try:
+            import json as _json
+            ext = _json.loads(extend) if extend and extend not in ("{}", "") else {}
+        except Exception:
+            ext = {}
+        proxy_url = (ext.get("proxy") or "").strip()
+        if proxy_url:
+            self.session.proxies.update({"http": proxy_url, "https": proxy_url})
+        # 预拉 CDN 列表（失败则用 fallback）
+        try:
+            self.refresh_cdn_hosts()
+        except Exception:
+            pass
 
     def getName(self):
         pass
@@ -149,15 +175,48 @@ class Spider(Spider):
         ]
         return result
 
+    def refresh_cdn_hosts(self):
+        """从官方 config 拉取 HLS CDN 列表（与 st.txt 一致）。"""
+        response = self.session.get(
+            f"{self.host}/api/front/v3/config/initial",
+            headers=self.headers,
+            timeout=8,
+        )
+        data = response.json() if response.status_code == 200 else {}
+        hosts_map = ((data.get("initial") or {}).get("common") or {}).get("hlsStreamHosts") or {}
+        ordered = []
+        preferred_keys = ["A", "C", "D", "E", "F", "B", "A1", "C1", "D1", "E1", "F1", "B1"]
+        dead_hosts = {"doppiocdn1.com"}
+        for key in preferred_keys:
+            host = hosts_map.get(key)
+            if host and host not in ordered and host not in dead_hosts:
+                ordered.append(host)
+        for host in hosts_map.values():
+            if host and host not in ordered and host not in dead_hosts:
+                ordered.append(host)
+        if ordered:
+            self.cdn_hosts = ordered
+        return self.cdn_hosts
+
+    def build_master_url(self, stream_id: str, cdn_host: str, quality_suffix: str, pkey: str) -> str:
+        """
+        st.txt 播放地址格式：
+        https://edge-hls.{cdn}/hls/{id}/master/{id}{suffix}.m3u8?pkey=固定值
+        quality_suffix: _auto / _480p / _240p / ""(source)
+        """
+        return (
+            f"https://edge-hls.{cdn_host}/hls/{stream_id}/master/"
+            f"{stream_id}{quality_suffix}.m3u8?pkey={pkey}"
+        )
+
     def playerContent(self, flag, id, vipFlags):
         """
-        Stripchat 播放关键：
+        按阅读订阅源 st.txt 可播方案：
 
-        1. 子播放列表必须带 psch/pkey，否则 CDN 返回 #EXT-X-MOUFLON-ADVERT（广告）
-        2. 分片路径被写成 media.mp4 占位，真实地址在 #EXT-X-MOUFLON:URI:...
-           必须走 proxy:// 由 localProxy 替换，直链播放会 404/超时
-        3. 优先非 lowLatency 列表（结构更简单，兼容性更好）
-        4. 绝不把裸 master 交给播放器（播放器跟线路时会丢 psch → 广告）
+        - 使用固定 pkey（bXorqTB5ZhP5FcpX），不要用 master 里动态 PSCH
+        - 使用 edge-hls.{cdn}/hls/{id}/master/{id}_{quality}.m3u8
+        - 返回直链 master（自带 pkey 的子流），不走 proxy://
+        - 本地实测：分片可直接 200 下载（无 media.mp4 混淆）
         """
         play_headers = {
             "User-Agent": self.headers.get("User-Agent", ""),
@@ -165,92 +224,62 @@ class Spider(Spider):
             "Referer": f"{self.host}/",
             "Accept": "*/*",
         }
-        master_candidates = [
-            f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}_auto.m3u8",
-            f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}.m3u8",
-            f"https://edge-hls.doppiocdn.org/hls/{id}/master/{id}_auto.m3u8",
-            f"https://edge-hls.doppiocdn.net/hls/{id}/master/{id}_auto.m3u8?playlistType=lowLatency",
+        stream_id = str(id).strip()
+        if not stream_id:
+            return {"parse": 0, "url": "", "header": play_headers, "jx": 0}
+
+        # 确保 CDN 列表可用
+        if not self.cdn_hosts:
+            self.cdn_hosts = list(self.FALLBACK_CDN_HOSTS)
+        pkey = self.play_pkey or self.FIXED_PKEYS[0]
+
+        # 画质：auto 优先（master 内含 source/480p/240p 且已带 pkey）
+        # 再给各画质 + 多线路兜底
+        quality_plan = [
+            ("auto", "_auto"),
+            ("480p", "_480p"),
+            ("240p", "_240p"),
+            ("source", ""),
         ]
-        master_text = ""
-        for master_url in master_candidates:
-            try:
-                response = self.session.get(master_url, headers=self.headers, timeout=6)
-                if response.status_code == 200 and "#EXTM3U" in response.text:
-                    master_text = response.text
-                    break
-            except Exception:
-                continue
-
-        if not master_text:
-            return {
-                "parse": 0,
-                "url": "",
-                "header": play_headers,
-                "jx": 0,
-                "msg": "master fetch failed",
-            }
-
-        psch = ""
-        pkey = ""
-        for line in master_text.splitlines():
-            if line.startswith("#EXT-X-MOUFLON:PSCH:"):
-                parts = line.split(":")
-                if len(parts) >= 4:
-                    # 取最后一个 psch/pkey（与媒体列表一致）
-                    psch, pkey = parts[2], parts[3]
-            elif line.startswith("#EXT-X-MOUFLON:"):
-                parts = line.split(":")
-                if len(parts) >= 4:
-                    psch, pkey = parts[2], parts[3]
-
-        quality_entries = []
-        lines = master_text.splitlines()
-        for index, line in enumerate(lines):
-            if "#EXT-X-STREAM-INF" not in line or index + 1 >= len(lines):
-                continue
-            name_match = re.search(r'NAME="([^"]+)"', line)
-            quality_name = name_match.group(1) if name_match else f"q{index}"
-            stream_url = lines[index + 1].strip()
-            if not stream_url or stream_url.startswith("#"):
-                continue
-            # 去掉 lowLatency，拿到普通 HLS（分片为完整段，更稳）
-            stream_url = stream_url.replace("playlistType=lowLatency&", "").replace(
-                "playlistType=lowLatency", ""
-            )
-            stream_url = stream_url.rstrip("?&")
-            # 必须带 psch/pkey，否则是广告
-            if psch and "psch=" not in stream_url:
-                separator = "&" if "?" in stream_url else "?"
-                stream_url = f"{stream_url}{separator}psch={psch}&pkey={pkey}"
-            elif psch and "pkey=" not in stream_url:
-                stream_url = f"{stream_url}&pkey={pkey}"
-            # 强制走本地代理做 MOUFLON 替换
-            proxy_url = f"{self.getProxyUrl()}&url={quote(stream_url, safe='')}"
-            quality_entries.append((quality_name, proxy_url))
-
-        if not quality_entries:
-            return {
-                "parse": 0,
-                "url": "",
-                "header": play_headers,
-                "jx": 0,
-                "msg": "no stream variants",
-            }
-
-        preferred_order = ["480", "240", "360", "720", "160", "source", "1080"]
-
-        def quality_rank(name: str) -> int:
-            lower_name = (name or "").lower()
-            for rank, token in enumerate(preferred_order):
-                if token in lower_name:
-                    return rank
-            return 50
-
-        quality_entries.sort(key=lambda item: quality_rank(item[0]))
-
         url_list = []
-        for quality_name, proxy_url in quality_entries:
-            url_list.extend([quality_name, proxy_url])
+        # 主线路：优先第一个 CDN 的 auto
+        primary_cdn = self.cdn_hosts[0]
+        primary_url = self.build_master_url(stream_id, primary_cdn, "_auto", pkey)
+        url_list.extend(["auto", primary_url])
+
+        # 其它画质（同一主 CDN）
+        for quality_name, suffix in quality_plan[1:]:
+            url_list.extend(
+                [
+                    quality_name,
+                    self.build_master_url(stream_id, primary_cdn, suffix, pkey),
+                ]
+            )
+
+        # 备用线路（其它 CDN 的 auto / 480p）
+        for line_index, cdn_host in enumerate(self.cdn_hosts[1:4], start=2):
+            url_list.extend(
+                [
+                    f"L{line_index}-auto",
+                    self.build_master_url(stream_id, cdn_host, "_auto", pkey),
+                ]
+            )
+            url_list.extend(
+                [
+                    f"L{line_index}-480p",
+                    self.build_master_url(stream_id, cdn_host, "_480p", pkey),
+                ]
+            )
+
+        # 备用 pkey（若主 pkey 失效）
+        alt_pkey = self.FIXED_PKEYS[1] if len(self.FIXED_PKEYS) > 1 else ""
+        if alt_pkey and alt_pkey != pkey:
+            url_list.extend(
+                [
+                    "auto-altkey",
+                    self.build_master_url(stream_id, primary_cdn, "_auto", alt_pkey),
+                ]
+            )
 
         return {
             "parse": 0,
@@ -261,9 +290,14 @@ class Spider(Spider):
         }
 
     def localProxy(self, param):
+        # 兼容旧缓存：若壳仍走 proxy://，尽量返回可播列表
         url = unquote(param.get("url") or "")
         if not url:
             return [404, "text/plain", "missing url"]
+        # 强制补固定 pkey（st.txt 方案）
+        if "pkey=" not in url:
+            separator = "&" if "?" in url else "?"
+            url = f"{url}{separator}pkey={self.play_pkey or self.FIXED_PKEYS[0]}"
         try:
             data = self.session.get(url, headers=self.headers, timeout=8)
         except Exception:
@@ -277,67 +311,14 @@ class Spider(Spider):
         if data.status_code != 200:
             return [data.status_code, "text/plain", f"upstream {data.status_code}"]
         body = data.text or ""
-        # 广告列表直接拒绝，避免“能播但只有广告”
         if "#EXT-X-MOUFLON-ADVERT" in body:
-            return [403, "text/plain", "advert playlist (missing psch/pkey)"]
-        if "#EXT-X-MOUFLON:" in body:
+            return [403, "text/plain", "advert playlist"]
+        # 若仍是混淆列表，尽量替换 URI
+        if "#EXT-X-MOUFLON:URI:" in body or "#EXT-X-MOUFLON:FILE:" in body:
             body = self.process_m3u8_content_v2(body)
-        body = self.simplify_ll_hls(body)
-        body = self.absolutize_m3u8(url, body)
         return [200, "application/vnd.apple.mpegurl", body]
 
-    def simplify_ll_hls(self, m3u8_content: str) -> str:
-        """去掉 LL-HLS 的 PART/PRELOAD 等，只保留标准 EXTINF 分片，提升兼容性。"""
-        if not m3u8_content:
-            return m3u8_content
-        drop_prefixes = (
-            "#EXT-X-PART:",
-            "#EXT-X-PART-INF:",
-            "#EXT-X-PRELOAD-HINT:",
-            "#EXT-X-RENDITION-REPORT:",
-            "#EXT-X-SERVER-CONTROL:",
-            "#EXT-X-MOUFLON:",
-        )
-        out_lines = []
-        for line in m3u8_content.splitlines():
-            stripped = line.strip()
-            if any(stripped.startswith(prefix) for prefix in drop_prefixes):
-                continue
-            out_lines.append(line)
-        return "\n".join(out_lines)
-
-    def absolutize_m3u8(self, playlist_url: str, m3u8_content: str) -> str:
-        if not m3u8_content:
-            return m3u8_content
-        out_lines = []
-        for line in m3u8_content.splitlines():
-            raw = line.strip()
-            if not raw:
-                out_lines.append(line)
-                continue
-            if raw.startswith("#"):
-                # #EXT-X-MAP:URI="relative"
-                if 'URI="' in raw:
-                    def _abs_uri(match):
-                        uri_value = match.group(1)
-                        if uri_value.startswith(("http://", "https://")):
-                            return f'URI="{uri_value}"'
-                        return f'URI="{urljoin(playlist_url, uri_value)}"'
-
-                    raw = re.sub(r'URI="([^"]+)"', _abs_uri, raw)
-                out_lines.append(raw)
-                continue
-            if raw.startswith(("http://", "https://")):
-                out_lines.append(raw)
-            else:
-                out_lines.append(urljoin(playlist_url, raw))
-        return "\n".join(out_lines)
-
     def encode_segment_url(self, segment_url: str) -> str:
-        """
-        分片名里常含 base64 的 + /，必须 percent-encode，
-        否则 HTTP 会把 / 当路径分隔、把 + 当空格，导致 404。
-        """
         if not segment_url or not segment_url.startswith("http"):
             return segment_url
         match = re.match(r"(https?://[^/]+/b-hls-\d+/\d+/)(.+)", segment_url)
@@ -346,18 +327,11 @@ class Spider(Spider):
         return match.group(1) + quote(match.group(2), safe="")
 
     def process_m3u8_content_v2(self, m3u8_content):
-        """
-        处理 Stripchat MOUFLON 混淆：
-        - 新：#EXT-X-MOUFLON:URI:<真实mp4> + 下一行 media.mp4 占位
-        - 旧：#EXT-X-MOUFLON:FILE:<base64> + 下一行含 media.mp4（需 XOR 解密）
-        """
         lines = m3u8_content.strip().split("\n")
         for index, line in enumerate(lines):
             if index + 1 >= len(lines):
                 continue
             next_line = lines[index + 1]
-
-            # 新格式：URI 直接给出真实分片
             if line.startswith("#EXT-X-MOUFLON:URI:") and "media.mp4" in next_line:
                 real_url = self.encode_segment_url(line.split(":", 2)[2].strip())
                 if 'URI="' in next_line:
@@ -369,8 +343,6 @@ class Spider(Spider):
                 else:
                     lines[index + 1] = real_url
                 continue
-
-            # 旧格式：FILE 需解密
             if line.startswith("#EXT-X-MOUFLON:FILE:") and "media.mp4" in next_line:
                 encrypted_data = line.split(":", 2)[2].strip()
                 decrypted_data = None
@@ -382,11 +354,11 @@ class Spider(Spider):
                         continue
                 if not decrypted_data:
                     continue
-                # 解密结果可能是相对路径或完整 URL
-                if decrypted_data.startswith("http"):
-                    replacement = self.encode_segment_url(decrypted_data)
-                else:
-                    replacement = quote(decrypted_data, safe="/")
+                replacement = (
+                    self.encode_segment_url(decrypted_data)
+                    if decrypted_data.startswith("http")
+                    else quote(decrypted_data, safe="/")
+                )
                 if 'URI="' in next_line:
                     lines[index + 1] = re.sub(
                         r'URI="[^"]*media\.mp4"',
