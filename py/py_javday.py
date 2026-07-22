@@ -6,7 +6,7 @@ from __future__ import annotations
 import re
 import sys
 from typing import Dict, List
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 
 from base.spider import Spider
 
@@ -22,6 +22,7 @@ class Spider(Spider):
                 "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
             ),
             "Referer": f"{self.host}/",
+            "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.8",
         }
         self.categories = [
             ("新作上市", "new-release"),
@@ -119,11 +120,81 @@ class Spider(Spider):
         }
 
     def searchContent(self, key: str, quick: bool, pg: str = "1"):
+        """
+        MacCMS 搜索（站点真实可用）：
+          列表页：/index.php/search/wd/{keyword}/
+          翻页：  /index.php/search/wd/{keyword}/page/{n}/
+          联想：  /index.php/ajax/suggest?mid=1&wd=...
+        详情页用 /videos/{en}/ （en 为番號去横杠，如 SSIS234）
+        """
+        keyword = (key or "").strip()
         page_number = max(int(pg or "1"), 1)
-        url = f"{self.host}/?s={key}"
-        if page_number > 1:
-            url = f"{self.host}/page/{page_number}/?s={key}"
-        return {"list": self._parse_list(self._get(url)), "page": page_number}
+        if not keyword:
+            return {"list": [], "page": page_number, "pagecount": 1, "limit": 20, "total": 0}
+
+        encoded_keyword = quote(keyword, safe="")
+        if page_number <= 1:
+            search_url = f"{self.host}/index.php/search/wd/{encoded_keyword}/"
+        else:
+            search_url = f"{self.host}/index.php/search/wd/{encoded_keyword}/page/{page_number}/"
+
+        html = self._get(search_url)
+        videos = self._parse_list(html)
+
+        # 列表页偶发空结果时，回退 suggest（至少给出第一页联想）
+        if not videos and page_number <= 1:
+            videos = self._search_via_suggest(keyword)
+
+        pagecount = self._parse_search_pagecount(html, page_number, bool(videos))
+        return {
+            "list": videos,
+            "page": page_number,
+            "pagecount": pagecount,
+            "limit": 20,
+            "total": pagecount * 20,
+        }
+
+    def _search_via_suggest(self, keyword: str) -> List[Dict[str, str]]:
+        suggest_url = (
+            f"{self.host}/index.php/ajax/suggest"
+            f"?mid=1&wd={quote(keyword, safe='')}&limit=20"
+        )
+        try:
+            response = self.fetch(suggest_url, headers=self.headers, timeout=15)
+            payload = response.json()
+        except Exception:
+            return []
+        videos: List[Dict[str, str]] = []
+        for item in payload.get("list") or []:
+            name = str(item.get("name") or "").strip()
+            english_slug = str(item.get("en") or "").strip()
+            picture = str(item.get("pic") or "").strip()
+            if picture and picture.startswith("/"):
+                picture = urljoin(self.host + "/", picture)
+            if english_slug:
+                detail_url = f"{self.host}/videos/{english_slug}/"
+            elif name:
+                detail_url = f"{self.host}/videos/{name.replace('-', '')}/"
+            else:
+                continue
+            videos.append(
+                {
+                    "vod_id": detail_url,
+                    "vod_name": name or english_slug,
+                    "vod_pic": picture,
+                    "vod_remarks": "搜索",
+                }
+            )
+        return videos
+
+    def _parse_search_pagecount(self, html: str, page_number: int, has_videos: bool) -> int:
+        page_numbers = [int(item) for item in re.findall(r"/search/[^\"']*/page/(\d+)/?", html)]
+        page_numbers += [int(item) for item in re.findall(r"/page/(\d+)/", html)]
+        if page_numbers:
+            return max(page_numbers)
+        if has_videos:
+            return page_number + 1
+        return max(page_number, 1)
 
     def playerContent(self, flag: str, play_id: str, vipFlags: List[str]):
         return {"parse": 0, "url": play_id, "header": self.headers}
@@ -136,15 +207,32 @@ class Spider(Spider):
         response.encoding = response.apparent_encoding or "utf-8"
         return response.text
 
+    def _normalize_video_url(self, href: str) -> str:
+        """
+        统一详情地址：
+          /index.php/videos/SSIS234/  -> https://javday.app/videos/SSIS234/
+          /videos/SSIS234/            -> https://javday.app/videos/SSIS234/
+        """
+        full = urljoin(self.host + "/", href)
+        match = re.search(r"/videos/([^/?#]+)/?", full)
+        if match:
+            return f"{self.host}/videos/{match.group(1)}/"
+        return full
+
     def _parse_list(self, html: str) -> List[Dict[str, str]]:
         videos: List[Dict[str, str]] = []
-        # 卡片通常包含 /videos/CODE/ 与 background-image
+        # 列表/搜索页同时存在：
+        #   /videos/CODE/
+        #   /index.php/videos/CODE/
         blocks = re.split(r'(?=<a[^>]+href="[^"]*/videos/)', html)
         for block in blocks:
-            href_match = re.search(r'href="((?:https?://[^"]+)?/videos/[^"]+)"', block)
+            href_match = re.search(
+                r'href="((?:https?://[^"]+)?(?:/index\.php)?/videos/[^"]+)"',
+                block,
+            )
             if not href_match:
                 continue
-            href = urljoin(self.host + "/", href_match.group(1))
+            href = self._normalize_video_url(href_match.group(1))
             title = self._first(
                 [
                     r'class="title"[^>]*>(.*?)</',

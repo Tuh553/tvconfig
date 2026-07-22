@@ -111,12 +111,59 @@ class Spider(Spider):
         }
 
     def searchContent(self, key: str, quick: bool, pg: str = "1"):
+        """
+        PeerTube 搜索：
+          /api/v1/search/videos?search=...&start=&count=&sort=-publishedAt
+        失败时回退 /api/v1/videos?search=...
+        """
+        keyword = (key or "").strip()
         page_number = max(int(pg or "1"), 1)
         count = 24
         start = (page_number - 1) * count
-        url = f"{self.host}/api/v1/search/videos?search={quote(key)}&start={start}&count={count}&sort=-publishedAt"
-        payload = self._get_json(url)
-        return {"list": self._map_items(payload.get("data") or []), "page": page_number}
+        if not keyword:
+            return {"list": [], "page": page_number, "pagecount": 1, "limit": count, "total": 0}
+
+        encoded_keyword = quote(keyword, safe="")
+        candidates = [
+            (
+                f"{self.host}/api/v1/search/videos"
+                f"?search={encoded_keyword}&start={start}&count={count}"
+                f"&sort=-publishedAt&searchTarget=local"
+            ),
+            (
+                f"{self.host}/api/v1/search/videos"
+                f"?search={encoded_keyword}&start={start}&count={count}&sort=-publishedAt"
+            ),
+            (
+                f"{self.host}/api/v1/videos"
+                f"?search={encoded_keyword}&start={start}&count={count}&sort=-publishedAt"
+            ),
+        ]
+        payload: Dict[str, Any] = {}
+        for url in candidates:
+            try:
+                payload = self._get_json(url)
+            except Exception:
+                payload = {}
+            if payload.get("data"):
+                break
+
+        items = payload.get("data") or []
+        total = 0
+        try:
+            total = int(payload.get("total") or 0)
+        except Exception:
+            total = len(items)
+        pagecount = max((total + count - 1) // count, 1) if total else (page_number if items else 1)
+        if items and pagecount < page_number:
+            pagecount = page_number
+        return {
+            "list": self._map_items(items),
+            "page": page_number,
+            "pagecount": pagecount,
+            "limit": count,
+            "total": total or len(items),
+        }
 
     def playerContent(self, flag: str, play_id: str, vipFlags: List[str]):
         return {

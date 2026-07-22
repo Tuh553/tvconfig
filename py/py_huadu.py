@@ -7,7 +7,7 @@ import json
 import re
 import sys
 from typing import Any, Dict, List
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 
 from base.spider import Spider
 
@@ -23,6 +23,7 @@ class Spider(Spider):
                 "(KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
             ),
             "Referer": f"{self.host}/",
+            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
         }
         self.categories = [
             ("UP精选乱伦", "cate3"),
@@ -113,10 +114,53 @@ class Spider(Spider):
         }
 
     def searchContent(self, key: str, quick: bool, pg: str = "1"):
-        # 站方搜索入口不稳定，回退到首页关键词过滤
-        html = self._get(f"{self.host}/")
-        videos = [item for item in self._parse_list(html) if key in item.get("vod_name", "")]
-        return {"list": videos, "page": 1, "pagecount": 1, "limit": 24, "total": len(videos)}
+        """
+        站方真实搜索：
+          /search/{keyword}/
+          /search/{keyword}/{page}/
+        """
+        keyword = (key or "").strip()
+        page_number = max(int(pg or "1"), 1)
+        if not keyword:
+            return {"list": [], "page": page_number, "pagecount": 1, "limit": 24, "total": 0}
+
+        encoded_keyword = quote(keyword, safe="")
+        if page_number <= 1:
+            search_url = f"{self.host}/search/{encoded_keyword}/"
+        else:
+            search_url = f"{self.host}/search/{encoded_keyword}/{page_number}/"
+
+        html = self._get(search_url)
+        videos = self._parse_list(html)
+        pagecount = self._parse_search_pagecount(html, encoded_keyword, page_number, bool(videos))
+        return {
+            "list": videos,
+            "page": page_number,
+            "pagecount": pagecount,
+            "limit": 24,
+            "total": pagecount * 24,
+        }
+
+    def _parse_search_pagecount(
+        self,
+        html: str,
+        encoded_keyword: str,
+        page_number: int,
+        has_videos: bool,
+    ) -> int:
+        # 分页链接形如 /search/关键词/234/
+        page_numbers = [
+            int(item)
+            for item in re.findall(
+                rf"/search/{re.escape(encoded_keyword)}/(\d+)/",
+                html,
+            )
+        ]
+        if page_numbers:
+            return max(page_numbers)
+        if has_videos:
+            return page_number + 1
+        return max(page_number, 1)
 
     def playerContent(self, flag: str, play_id: str, vipFlags: List[str]):
         play_url = play_id

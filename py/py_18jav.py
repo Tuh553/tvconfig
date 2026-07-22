@@ -128,21 +128,156 @@ class Spider(Spider):
         }
 
     def searchContent(self, key: str, quick: bool, pg: str = "1"):
+        """
+        官方搜索：/search/{keyword}/ （block_id 与分类不同）
+        站点搜索索引经常返回「暫無相關內容」，此时回退多分类本地过滤。
+        """
+        keyword = (key or "").strip()
         page_number = max(int(pg or "1"), 1)
-        path = f"search/{quote(key)}"
-        if page_number <= 1:
-            html = self._get(f"{self.host}/{path}/", ajax=False)
-            videos = self._parse_list(html)
-            pagecount = self._parse_pagecount(html)
-        else:
-            videos, pagecount = self._load_page(path, "release_at", page_number)
+        if not keyword:
+            return {"list": [], "page": page_number, "pagecount": 1, "limit": 12, "total": 0}
+
+        # 1) 官方搜索（使用正确 block_id）
+        videos, pagecount = self._search_official(keyword, page_number)
+        if videos:
+            return {
+                "list": videos,
+                "page": page_number,
+                "pagecount": max(pagecount, page_number),
+                "limit": 12,
+                "total": max(pagecount, page_number) * 12,
+            }
+
+        # 2) 像番號的关键词：直接探测详情页
+        if re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9\-_]{2,40}", keyword):
+            direct = self._probe_direct_video(keyword)
+            if direct:
+                return {
+                    "list": [direct],
+                    "page": 1,
+                    "pagecount": 1,
+                    "limit": 12,
+                    "total": 1,
+                }
+
+        # 3) 多分类扫描过滤（官方搜索失效时的兜底）
+        matched = self._search_by_scanning(keyword)
+        # 本地分页
+        page_size = 12
+        start_index = (page_number - 1) * page_size
+        page_items = matched[start_index : start_index + page_size]
+        total = len(matched)
+        pagecount = max((total + page_size - 1) // page_size, 1) if total else 1
         return {
-            "list": videos,
+            "list": page_items,
             "page": page_number,
             "pagecount": pagecount,
-            "limit": 12,
-            "total": pagecount * 12,
+            "limit": page_size,
+            "total": total,
         }
+
+    def _search_official(self, keyword: str, page_number: int):
+        search_path = f"search/{quote(keyword, safe='')}"
+        search_block_id = "list_videos_videos_list_search_result"
+        if page_number <= 1:
+            html = self._get(f"{self.host}/{search_path}/", ajax=False)
+        else:
+            params = {
+                "mode": "async",
+                "function": "get_block",
+                "block_id": search_block_id,
+                "q": keyword,
+                "from": str(page_number),
+            }
+            html = self._get(f"{self.host}/{search_path}/", ajax=True, params=params)
+            if not self._parse_list(html) and "暫無相關內容" not in html:
+                params["from"] = f"{page_number:02d}"
+                html = self._get(f"{self.host}/{search_path}/", ajax=True, params=params)
+
+        if "暫無相關內容" in html:
+            return [], 1
+        videos = self._parse_list(html)
+        pagecount = self._parse_pagecount(html)
+        if pagecount < page_number and videos:
+            pagecount = page_number + 1
+        if pagecount < 1:
+            pagecount = 1
+        return videos, pagecount
+
+    def _probe_direct_video(self, keyword: str) -> Dict[str, str] | None:
+        candidates = [
+            keyword,
+            keyword.upper(),
+            keyword.lower(),
+            keyword.replace("-", ""),
+            keyword.upper().replace("-", ""),
+        ]
+        seen = set()
+        for slug in candidates:
+            if not slug or slug in seen:
+                continue
+            seen.add(slug)
+            detail_url = f"{self.host}/videos/{slug}"
+            try:
+                html = self._get(detail_url, ajax=False)
+            except Exception:
+                continue
+            if "404" in html[:300] or "找不到" in html or "Not Found" in html:
+                continue
+            # 有详情特征才算命中
+            if not re.search(r"<h1[^>]*>|og:title|/videos/", html, re.I):
+                continue
+            title = self._first(
+                [
+                    r"<h1[^>]*>(.*?)</h1>",
+                    r'property="og:title"\s+content="([^"]+)"',
+                    r"<title>(.*?)</title>",
+                ],
+                html,
+                slug,
+            )
+            title = re.sub(r"<[^>]+>", "", title).strip() or slug
+            pic = self._first(
+                [
+                    r'property="og:image"\s+content="([^"]+)"',
+                    r'data-src="(https?://[^"]+)"',
+                ],
+                html,
+                "",
+            )
+            return {
+                "vod_id": detail_url if detail_url.endswith("/") else detail_url + "/",
+                "vod_name": title,
+                "vod_pic": pic,
+                "vod_remarks": "直达",
+            }
+        return None
+
+    def _search_by_scanning(self, keyword: str) -> List[Dict[str, str]]:
+        keyword_lower = keyword.lower()
+        scan_paths = [
+            ("latest-updates", "release_at"),
+            ("hot", "views"),
+            ("categories/chinese-subtitle", "release_at"),
+            ("categories/uncensored", "release_at"),
+            ("categories/taiwan-av", "release_at"),
+        ]
+        matched: List[Dict[str, str]] = []
+        seen_ids = set()
+        max_pages_per_path = 3
+        for path, sort_by in scan_paths:
+            for page_number in range(1, max_pages_per_path + 1):
+                videos, _ = self._load_page(path, sort_by, page_number)
+                for item in videos:
+                    haystack = f"{item.get('vod_name', '')} {item.get('vod_id', '')}".lower()
+                    if keyword_lower not in haystack:
+                        continue
+                    video_id = item.get("vod_id", "")
+                    if video_id in seen_ids:
+                        continue
+                    seen_ids.add(video_id)
+                    matched.append(item)
+        return matched
 
     def playerContent(self, flag: str, play_id: str, vipFlags: List[str]):
         return {

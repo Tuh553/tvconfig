@@ -43,16 +43,6 @@
       "playerType": 2
     },
     {
-      "key": "小黄书",
-      "name": "小黄书",
-      "type": 3,
-      "api": "./py/py_xchina.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "playerType": 2
-    },
-    {
       "key": "18jav",
       "name": "18JAV",
       "type": 3,
@@ -99,5 +89,5 @@
   "ijk": [],
   "ads": [],
   "lives": [],
-  "_说明": "全部改为纯 Python 源，不依赖 csp_XBPQ/csp_XYQHiker。若客户端支持 Python 爬虫即可加载。小黄书遇 Cloudflare 需代理。"
+  "_说明": "全部改为纯 Python 源，不依赖 csp_XBPQ/csp_XYQHiker。若客户端支持 Python 爬虫即可加载。"
 }

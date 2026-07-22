@@ -1,4 +1,4 @@
-# tvconfig（江湖 8 源 · 纯 Python）
+# tvconfig（江湖 7 源 · 纯 Python）
 
 接口：`https://raw.githubusercontent.com/Tuh553/tvconfig/main/江湖.json`
 
@@ -6,20 +6,19 @@
 
 `csp_XBPQ` / `csp_XYQHiker` 依赖 spider jar。若客户端 jar 加载失败，会出现**只有 Python 源能开**的情况。
 
-当前 8 源全部改为 `./py/*.py`，与 Stripchat 同机制。
+当前源全部改为 `./py/*.py`，与 Stripchat 同机制。
 
 ## 源列表
 
 | 名称 | 脚本 | 备注 |
 |------|------|------|
-| 花都影视 | py_huadu.py | hdys.pro，直出 m3u8 |
+| 花都影视 | py_huadu.py | hdys.pro，`/search/{kw}/` 搜索 |
 | MissAV | py_missav.py | missav.app MacCMS |
-| JAVDAYTV | py_javday.py | javday.app |
-| NOWAV | py_nowav.py | pigav.ws PeerTube API |
-| 小黄书 | py_xchina.py | 遇 Cloudflare 需代理 |
-| 18JAV | py_18jav.py | 18jav.tv |
+| JAVDAYTV | py_javday.py | javday.app MacCMS 搜索 `/index.php/search/wd/` |
+| NOWAV | py_nowav.py | pigav.ws PeerTube API 搜索 |
+| 18JAV | py_18jav.py | 18jav.tv；官方搜索失效时多分类兜底 |
 | 黄色仓库 | py_hsck.py | hsck4.26img.com |
-| Stripchat | py_stripchat.py | 直播；优先 480p + 代理解密兜底 |
+| Stripchat | py_stripchat.py | 直播；固定 pkey + 多 CDN 直链 |
 
 ## 使用
 
