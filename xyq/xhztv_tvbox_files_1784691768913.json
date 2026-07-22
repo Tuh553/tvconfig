@@ -107,50 +107,6 @@
       "searchable": 1
     },
     {
-      "key": "cns_厂长",
-      "name": "厂长┃秒播",
-      "type": 3,
-      "api": "csp_NewCzGuard",
-      "jar": "./jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
-      "timeout": 10,
-      "searchable": 1,
-      "changeable": 1,
-      "quickSearch": 1
-    },
-    {
-      "key": "cns_原创",
-      "name": "原创┃秒播",
-      "type": 3,
-      "api": "csp_YCyzGuard",
-      "jar": "./jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
-      "timeout": 15,
-      "searchable": 1,
-      "changeable": 1,
-      "quickSearch": 1
-    },
-    {
-      "key": "cns_文采",
-      "name": "文采┃秒播",
-      "type": 3,
-      "api": "csp_JpysGuard",
-      "jar": "./jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
-      "timeout": 10,
-      "searchable": 1,
-      "changeable": 1,
-      "quickSearch": 1
-    },
-    {
-      "key": "cns_比特",
-      "name": "比特┃秒播",
-      "type": 3,
-      "api": "csp_BttwooGuard",
-      "jar": "./jar/fty0528.jar;md5;4905535609a9c0ce9cc2f652d6d90bda",
-      "timeout": 10,
-      "searchable": 1,
-      "changeable": 1,
-      "quickSearch": 1
-    },
-    {
       "key": "csp_Bili",
       "name": "🐞哔哩综合",
       "type": 3,
